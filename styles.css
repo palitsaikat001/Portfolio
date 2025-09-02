@@ -1566,27 +1566,6 @@ width: fit-content;
 /* ↓↓↓ 1200px and below ↓↓↓ */
 
 
-@media screen and (min-width: 1600px) {
-
-
-.about-img {
-  zoom: 120%;
-}
-
-.about-card, .about-content, .glass {
-    zoom: 120%;
-}
-
-.services-container.dual {
-  max-width: 1100px; 
-}
-
-.services-box {
-  zoom: 125%;
-}
-
-
-}
 
 
 
