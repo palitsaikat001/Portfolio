@@ -1618,6 +1618,17 @@ width: fit-content;
   zoom: 120%;
 }
 
+   #portfolio .heading {
+    zoom: 125%;
+  }
+.portfolio-container {
+  zoom: 125%;
+}
+
+.portfolio-menu {
+  zoom: 125%;
+}
+
 }
 
 
