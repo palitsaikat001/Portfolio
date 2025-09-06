@@ -45,7 +45,7 @@ main {
 
 /* When sidebar is active, shift main */
 main.shifted {
-  margin: 0px 0px 0px 90px; /* shift right */
+  margin: 0px 0px 0px 100px; /* shift right */
 }
 
 
@@ -2516,7 +2516,7 @@ main {
 
 /* When sidebar is active, shift main */
 main.shifted {
-  margin: 0px 0px 0px 90px; /* shift right */
+  margin: 0px 0px 0px 100px; /* shift right */
 }
 
 
