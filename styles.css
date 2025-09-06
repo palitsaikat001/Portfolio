@@ -40,8 +40,14 @@ main {
     flex: 1;
     padding: 2rem 0rem;
     margin-left: 105px;
-      transition: all 0.3s ease;
+  transition: margin-left 0.3s ease-in-out;
 }
+
+/* When sidebar is active, shift main */
+main.shifted {
+  margin-left: 80px; /* shift right */
+}
+
 
 section {
     min-width: 100vh;
@@ -73,11 +79,11 @@ section {
 }
 
 .header.sticky {
-    background: rgba(0, 0, 0, 0.9); /* Black with slight transparency */
-    backdrop-filter: blur(10px);
-    /* Removed the border-right to avoid any line */
-    box-shadow: 3px 0 15px rgba(0, 0, 0, 0.3); /* Soft shadow effect */
+  background: rgba(0, 0, 0, 0.7); /* 70% opaque */
+  backdrop-filter: blur(10px);
+  box-shadow: 3px 0 15px rgba(0, 0, 0, 0.3);
 }
+
 
 /* Logo Styling */
 .logo {
@@ -2299,7 +2305,7 @@ padding: 0 2.5rem;
   }
 
   main {
-    margin-left: 85px;
+    margin-left: 80px;
   }
 
     .home-content h1 {
@@ -2504,6 +2510,16 @@ padding: 0 2.5rem;
   } */
 
 
+main {
+    margin-left: 0px;
+}
+
+/* When sidebar is active, shift main */
+main.shifted {
+  margin-left: 80px; /* shift right */
+}
+
+
    .header {
     width: 100%;
     height: 60px;
@@ -2553,9 +2569,12 @@ padding: 0 2.5rem;
     font-size: 1.6rem;
   }
 
-  main {
-    margin-left: 0px;
-  }
+
+  /* Transition for smooth shifting */
+
+
+/* Transition for smooth shifting */
+
 
 
   .about{
@@ -2863,7 +2882,7 @@ padding-bottom: 0rem;
   }
 
   main {
-    margin-left: 75px;
+    margin-left: 0px;
   }
 
 

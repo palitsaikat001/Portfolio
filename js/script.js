@@ -2,10 +2,38 @@
 
 let menuIcon = document.querySelector("#menu-icon");
 let navbar = document.querySelector(".navbar");
+const main = document.querySelector("main");
+
 menuIcon.onclick = () => {
   menuIcon.classList.toggle("bx-x");
   navbar.classList.toggle("active");
+    main.classList.toggle("shifted"); // shift main content
 };
+
+
+document.addEventListener("click", (e) => {
+  if (
+    navbar.classList.contains("active") &&
+    !navbar.contains(e.target) &&
+    !menuIcon.contains(e.target)
+  ) {
+    closeMenu();
+  }
+});
+
+// Close navbar when scrolling
+window.addEventListener("scroll", () => {
+  if (navbar.classList.contains("active")) {
+    closeMenu();
+  }
+});
+
+// Helper function
+function closeMenu() {
+  navbar.classList.remove("active");
+  menuIcon.classList.remove("bx-x");
+  main.classList.remove("shifted");
+}
 
 // Scroll Sections Active Links
 
