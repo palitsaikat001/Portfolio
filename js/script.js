@@ -1,5 +1,4 @@
 // toggle icon navbar
-
 let menuIcon = document.querySelector("#menu-icon");
 let navbar = document.querySelector(".navbar");
 const main = document.querySelector("main");
@@ -7,9 +6,8 @@ const main = document.querySelector("main");
 menuIcon.onclick = () => {
   menuIcon.classList.toggle("bx-x");
   navbar.classList.toggle("active");
-    main.classList.toggle("shifted"); // shift main content
+  main.classList.toggle("shifted"); // shift main content
 };
-
 
 document.addEventListener("click", (e) => {
   if (
@@ -36,13 +34,11 @@ function closeMenu() {
 }
 
 // Scroll Sections Active Links
-
 let sections = document.querySelectorAll("section");
 let navLinks = document.querySelectorAll("header nav a");
 
 window.onscroll = () => {
   sections.forEach((sec) => {
-    
     let top = window.scrollY;
     let offset = sec.offsetTop - 150;
     let height = sec.offsetHeight;
@@ -59,24 +55,39 @@ window.onscroll = () => {
   });
 
   // Sticky navbar
-
   let header = document.querySelector("header");
   header.classList.toggle("sticky", window.scrollY > 100);
-
-  //    remove toggle icon and navbar when click navbar link
-
-  menuIcon.classList.remove("bx-x");
-  navbar.classList.remove("active");
 };
 
-// scroll reveal
+// ✅ Close navbar first, then smooth scroll (for mobile only)
+navLinks.forEach((link) => {
+  link.addEventListener("click", (e) => {
+    if (window.innerWidth <= 768) {
+      e.preventDefault(); // stop instant jump
 
+      // Get target section
+      let targetId = link.getAttribute("href");
+      let targetElement = document.querySelector(targetId);
+
+      // Close navbar first
+      closeMenu();
+
+      // Then scroll smoothly after a short delay
+      setTimeout(() => {
+        targetElement.scrollIntoView({
+          behavior: "smooth"
+        });
+      }, 300); // match your navbar transition speed
+    }
+  });
+});
+
+// scroll reveal
 ScrollReveal({
-//   reset: true,
+  // reset: true,
   distance: "80px",
   duration: 2000,
   delay: 200,
-  
 });
 ScrollReveal().reveal(".home-content, .heading, .contact-info", { origin: "top" });
 ScrollReveal().reveal(".services-container, .portfolio-box, .contact form", { origin: "bottom" });
@@ -88,10 +99,9 @@ ScrollReveal().reveal(".home-img", {
   easing: "ease-in-out",
   reset: false
 });
-
-
 ScrollReveal().reveal(".home-content h1, .about-img", { origin: "left" });
 ScrollReveal().reveal(".home-content p, .about-content", { origin: "right" });
+
 
 // typed js
 
