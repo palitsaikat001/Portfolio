@@ -1,14 +1,17 @@
-// toggle icon navbar
+// Toggle icon navbar
 let menuIcon = document.querySelector("#menu-icon");
 let navbar = document.querySelector(".navbar");
 const main = document.querySelector("main");
+let header = document.querySelector("header");
 
+// Toggle menu on button click
 menuIcon.onclick = () => {
   menuIcon.classList.toggle("bx-x");
   navbar.classList.toggle("active");
   main.classList.toggle("shifted"); // shift main content
 };
 
+// Close menu when clicking outside
 document.addEventListener("click", (e) => {
   if (
     navbar.classList.contains("active") &&
@@ -24,6 +27,50 @@ window.addEventListener("scroll", () => {
   if (navbar.classList.contains("active")) {
     closeMenu();
   }
+
+  // Sticky navbar
+  header.classList.toggle("sticky", window.scrollY > 100);
+
+  // Active link highlighting
+  let top = window.scrollY;
+  document.querySelectorAll("section").forEach((sec) => {
+    let offset = sec.offsetTop - 150;
+    let height = sec.offsetHeight;
+    let id = sec.getAttribute("id");
+
+    if (top >= offset && top < offset + height) {
+      document.querySelectorAll("header nav a").forEach((link) => {
+        link.classList.remove("active");
+      });
+      document
+        .querySelector("header nav a[href*=" + id + "]")
+        .classList.add("active");
+    }
+  });
+});
+
+// Close menu + smooth scroll with header offset
+document.querySelectorAll("header nav a").forEach((link) => {
+  link.addEventListener("click", (e) => {
+    e.preventDefault(); // stop default jump
+
+    let targetId = link.getAttribute("href").substring(1);
+    let target = document.getElementById(targetId);
+
+    if (target) {
+      let headerHeight = header.offsetHeight; // header height
+      let targetPos = target.offsetTop - headerHeight;
+
+      window.scrollTo({
+        top: targetPos,
+        behavior: "smooth",
+      });
+    }
+
+    if (navbar.classList.contains("active")) {
+      closeMenu();
+    }
+  });
 });
 
 // Helper function
@@ -33,72 +80,25 @@ function closeMenu() {
   main.classList.remove("shifted");
 }
 
-// Scroll Sections Active Links
-let sections = document.querySelectorAll("section");
-let navLinks = document.querySelectorAll("header nav a");
-
-window.onscroll = () => {
-  sections.forEach((sec) => {
-    let top = window.scrollY;
-    let offset = sec.offsetTop - 150;
-    let height = sec.offsetHeight;
-    let id = sec.getAttribute("id");
-
-    if (top >= offset && top < offset + height) {
-      navLinks.forEach((links) => {
-        links.classList.remove("active");
-        document
-          .querySelector("header nav a[href*=" + id + "]")
-          .classList.add("active");
-      });
-    }
-  });
-
-  // Sticky navbar
-  let header = document.querySelector("header");
-  header.classList.toggle("sticky", window.scrollY > 100);
-};
-
-// ✅ Close navbar first, then smooth scroll (for mobile only)
-navLinks.forEach((link) => {
-  link.addEventListener("click", (e) => {
-    if (window.innerWidth <= 768) {
-      e.preventDefault(); // stop instant jump
-
-      // Get target section
-      let targetId = link.getAttribute("href");
-      let targetElement = document.querySelector(targetId);
-
-      // Close navbar first
-      closeMenu();
-
-      // Then scroll smoothly after a short delay
-      setTimeout(() => {
-        targetElement.scrollIntoView({
-          behavior: "smooth"
-        });
-      }, 300); // match your navbar transition speed
-    }
-  });
-});
-
-// scroll reveal
+// Scroll reveal animations
 ScrollReveal({
-  // reset: true,
   distance: "80px",
   duration: 2000,
   delay: 200,
 });
+
 ScrollReveal().reveal(".home-content, .heading, .contact-info", { origin: "top" });
 ScrollReveal().reveal(".services-container, .portfolio-box, .contact form", { origin: "bottom" });
+
 ScrollReveal().reveal(".home-img", {
-  origin: "none",     // Removes directional animation
-  distance: "0px",    // No sliding movement
-  scale: 0.8,         // Zoom-in effect
+  origin: "none",
+  distance: "0px",
+  scale: 0.8,
   duration: 1500,
   easing: "ease-in-out",
-  reset: false
+  reset: false,
 });
+
 ScrollReveal().reveal(".home-content h1, .about-img", { origin: "left" });
 ScrollReveal().reveal(".home-content p, .about-content", { origin: "right" });
 
