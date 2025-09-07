@@ -604,6 +604,11 @@ color:var(--text-color)
 .skill-group:hover {
   border-color: var(--main-color);
   transform: scale(1.01);
+
+}
+
+.skill-group:hover .skill-icon img {
+  animation: glowPulse 1.5s infinite ease-in-out;
 }
 .skill-group h4 {
   font-size: 1.5rem; /* was 2rem */
@@ -713,6 +718,7 @@ transform: scale(0.9);
   border-color: var(--main-color);
   box-shadow: 0 0 10px var(--main-color), 0 0 20px var(--main-color);
   transform: scale(1.05);
+  
 }
 
 
@@ -2000,10 +2006,7 @@ width: fit-content;
 
 
 
-.skill-icon img {
-    /* ✅ add automatic hover effect */
-  animation: glowPulse 3s infinite ease-in-out;
-}
+
 
 }
 
