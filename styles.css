@@ -2866,23 +2866,24 @@ padding-bottom: 0rem;
 
 /* ↓↓↓ 365px and below ↓↓↓ */
 @media (max-width: 365px) {
-  .header {
+  /* .header {
     width: 75px;
     padding: 0.5rem;
+  } */
+
+.logo {
+    margin: 0 auto;
+    font-size: 2rem;
   }
 
-  .logo {
-    font-size: 1.4rem;
-    margin-bottom: 0.8rem;
-  }
-
+  /*
   .navbar a {
     font-size: 1.2rem;
     margin: 0.8rem 0;
-  }
+  } */
 
   main {
-    margin-left: 0px;
+    margin: 0px 10px 0px 10px;
   }
 
 
