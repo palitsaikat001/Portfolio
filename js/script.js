@@ -60,27 +60,60 @@ window.onscroll = () => {
 };
 
 // ✅ Close navbar first, then smooth scroll (for mobile only)
-navLinks.forEach((link) => {
-  link.addEventListener("click", (e) => {
-    if (window.innerWidth <= 768) {
-      e.preventDefault(); // stop instant jump
+document.addEventListener("DOMContentLoaded", () => {
+  const header = document.querySelector("header");
+  const navbar = document.querySelector(".navbar"); // assuming this is in scope
+  const navLinks = document.querySelectorAll('header nav a[href^="#"]');
+  const MENU_TRANSITION_MS = 330; // match your CSS transition (300ms in your earlier code)
 
-      // Get target section
-      let targetId = link.getAttribute("href");
-      let targetElement = document.querySelector(targetId);
+  navLinks.forEach((link) => {
+    link.addEventListener("click", (e) => {
+      e.preventDefault();
 
-      // Close navbar first
-      closeMenu();
+      const targetId = link.getAttribute("href");
+      const targetElement = document.querySelector(targetId);
 
-      // Then scroll smoothly after a short delay
-      setTimeout(() => {
-        targetElement.scrollIntoView({
-          behavior: "smooth"
+      if (!targetElement) {
+        console.warn("Scrolling aborted — target not found:", targetId);
+        return;
+      }
+
+      // Do the scroll calculation just before scrolling (after menu closed if needed)
+      const doScroll = () => {
+        // Recompute header height here (in case it changed with menu open/close)
+        const headerHeight = header ? header.offsetHeight : 0;
+
+        const elementPosition =
+          targetElement.getBoundingClientRect().top + window.pageYOffset;
+        const offsetPosition = Math.max(0, elementPosition - headerHeight);
+
+        console.log({
+          action: "smooth-scroll",
+          target: targetId,
+          headerHeight,
+          elementPosition,
+          offsetPosition,
         });
-      }, 300); // match your navbar transition speed
-    }
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: "smooth",
+        });
+      };
+
+      // If navbar is active (open on mobile), close it first then scroll after the transition
+      if (navbar && navbar.classList.contains("active")) {
+        closeMenu(); // your helper
+        // wait for the menu to finish closing (match this to your CSS transition)
+        setTimeout(doScroll, MENU_TRANSITION_MS + 20);
+      } else {
+        // immediate scroll
+        doScroll();
+      }
+    });
   });
 });
+
 
 // scroll reveal
 ScrollReveal({
