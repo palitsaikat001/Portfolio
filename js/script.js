@@ -103,6 +103,21 @@ ScrollReveal().reveal(".home-content h1, .about-img", { origin: "left" });
 ScrollReveal().reveal(".home-content p, .about-content", { origin: "right" });
 
 
+// Show overlay when clicking project link
+document.querySelectorAll(".project-link").forEach(link => {
+  link.addEventListener("click", (e) => {
+    e.preventDefault(); // prevent actual link navigation
+    document.getElementById("loading-overlay").style.display = "flex";
+  });
+});
+
+// Hide overlay when user clicks anywhere on it
+document.getElementById("loading-overlay").addEventListener("click", () => {
+  document.getElementById("loading-overlay").style.display = "none";
+});
+
+
+
 
 // typed js
 
