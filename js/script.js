@@ -59,61 +59,36 @@ window.onscroll = () => {
   header.classList.toggle("sticky", window.scrollY > 100);
 };
 
-// ✅ Close navbar first, then smooth scroll (for mobile only)
-document.addEventListener("DOMContentLoaded", () => {
-  const header = document.querySelector("header");
-  const navbar = document.querySelector(".navbar"); // assuming this is in scope
-  const navLinks = document.querySelectorAll('header nav a[href^="#"]');
-  const MENU_TRANSITION_MS = 330; // match your CSS transition (300ms in your earlier code)
+// ✅ Close navbar first, then smooth scroll
+navLinks.forEach((link) => {
+  link.addEventListener("click", (e) => {
+    let targetId = link.getAttribute("href");
+    let targetElement = document.querySelector(targetId);
 
-  navLinks.forEach((link) => {
-    link.addEventListener("click", (e) => {
-      e.preventDefault();
+    if (!targetElement) return;
 
-      const targetId = link.getAttribute("href");
-      const targetElement = document.querySelector(targetId);
+    e.preventDefault(); // prevent instant jump
+    closeMenu();
 
-      if (!targetElement) {
-        console.warn("Scrolling aborted — target not found:", targetId);
-        return;
-      }
-
-      // Do the scroll calculation just before scrolling (after menu closed if needed)
-      const doScroll = () => {
-        // Recompute header height here (in case it changed with menu open/close)
-        const headerHeight = header ? header.offsetHeight : 0;
-
-        const elementPosition =
-          targetElement.getBoundingClientRect().top + window.pageYOffset;
-        const offsetPosition = Math.max(0, elementPosition - headerHeight);
-
-        console.log({
-          action: "smooth-scroll",
-          target: targetId,
-          headerHeight,
-          elementPosition,
-          offsetPosition,
-        });
+    setTimeout(() => {
+      if (window.innerWidth <= 768) {
+        // Mobile → scroll with header offset
+        let header = document.querySelector("header");
+        let headerHeight = header.offsetHeight;
+        let elementPosition = targetElement.getBoundingClientRect().top + window.scrollY;
+        let offsetPosition = elementPosition - headerHeight;
 
         window.scrollTo({
           top: offsetPosition,
-          behavior: "smooth",
+          behavior: "smooth"
         });
-      };
-
-      // If navbar is active (open on mobile), close it first then scroll after the transition
-      if (navbar && navbar.classList.contains("active")) {
-        closeMenu(); // your helper
-        // wait for the menu to finish closing (match this to your CSS transition)
-        setTimeout(doScroll, MENU_TRANSITION_MS + 20);
       } else {
-        // immediate scroll
-        doScroll();
+        // Desktop → normal smooth scroll
+        targetElement.scrollIntoView({ behavior: "smooth" });
       }
-    });
+    }, 300); // matches navbar transition speed
   });
 });
-
 
 // scroll reveal
 ScrollReveal({
@@ -134,6 +109,7 @@ ScrollReveal().reveal(".home-img", {
 });
 ScrollReveal().reveal(".home-content h1, .about-img", { origin: "left" });
 ScrollReveal().reveal(".home-content p, .about-content", { origin: "right" });
+
 
 
 // Show overlay when clicking project link
