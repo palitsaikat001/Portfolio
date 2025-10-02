@@ -364,7 +364,13 @@ section {
   box-shadow: 0 0 30px rgba(0, 255, 47, 0.05);
   max-width: 600px;
   height: 375px;
-  overflow: auto;
+  overflow-y: scroll;   /* ✅ same as glass1 */
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+
+  /* Custom Scrollbar */
+  scrollbar-width: thin; /* Firefox */
+  scrollbar-color: var(--main-color) rgba(255, 255, 255, 0.05);
 }
 
 .heading {
