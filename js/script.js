@@ -235,3 +235,37 @@ buttons.forEach(btn => {
 });
 
 
+
+
+
+
+
+
+
+
+ const downloadBtn = document.getElementById("downloadBtn");
+  const overlay = document.getElementById("download-overlay");
+  const confirmBtn = document.getElementById("confirmDownload");
+  const cancelBtn = document.getElementById("cancelDownload");
+
+  downloadBtn.addEventListener("click", (e) => {
+    e.preventDefault(); // Stop instant download
+    overlay.style.display = "flex"; // Show popup
+  });
+
+  confirmBtn.addEventListener("click", () => {
+    // Hide popup
+    overlay.style.display = "none";
+
+    // Trigger download
+    const link = document.createElement("a");
+    link.href = downloadBtn.getAttribute("href");
+    link.download = "";
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+  });
+
+  cancelBtn.addEventListener("click", () => {
+    overlay.style.display = "none"; // Close popup
+  });

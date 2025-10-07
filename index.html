@@ -30,6 +30,19 @@
 </div>
 
 
+<!-- Popup overlay -->
+<div class="download-overlay" id="download-overlay">
+  <div class="popup">
+    <div class="loader"></div>
+    <h3>Waiting for your decision...</h3>
+    <div class="popup-buttons">
+      <button id="confirmDownload" class="btn confirm">Download</button>
+      <button id="cancelDownload" class="btn cancel">Cancel</button>
+    </div>
+  </div>
+</div>
+
+
 
 
     <!-- header -->
@@ -72,7 +85,9 @@
       </div>
       
 
-  <a href="assets/cv.pdf" class="btn">Download CV</a>
+<a href="assets/cv.pdf" class="btn" id="downloadBtn">Download CV</a>
+
+
   
   <div class="btn-wrapper">
   <button id="toggle-btn1" class="inline-read-btn">

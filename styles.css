@@ -1498,6 +1498,8 @@ width: fit-content;
   width: fit-content;
 }
 
+
+
 /* ===== Right Side: Contact Form Wrapper ===== */
 .contact-form-wrapper {
   flex: 1;
@@ -3094,3 +3096,94 @@ padding-bottom: 0rem;
 
 
 
+
+/* Overlay background (dark transparent layer) */
+.download-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(17,17,17,0.95);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-size: 20px;
+  font-family: Arial, sans-serif;
+  z-index: 9999;
+  display: none; /* hidden by default */
+}
+
+/* Bigger popup with solid background */
+.popup {
+  background: #121212; /* solid background */
+  border: 2px solid #00ff99;
+  border-radius: 1.5rem;
+  padding: 3rem 2rem;
+  text-align: center;
+  color: white;
+  width: 90%;
+  max-width: 480px;
+  box-shadow: 0 0 40px rgba(0, 255, 120, 0.4);
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Loader animation */
+.loader {
+  border: 5px solid rgba(255, 255, 255, 0.1);
+  border-top: 5px solid #00ff99;
+  border-radius: 50%;
+  width: 55px;
+  height: 55px;
+  margin: 0 auto 1.5rem auto;
+  animation: spin 1s linear infinite;
+}
+
+/* Buttons inside popup */
+.popup-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+
+.popup-buttons .btn {
+  padding: 0.8rem 2rem;
+  border-radius: 0.5rem;
+  border: none;
+  cursor: pointer;
+  transition: 0.2s ease;
+  font-size: 1rem;
+}
+
+.popup-buttons .confirm {
+  background: linear-gradient(90deg, #00ff99, #00cc66);
+  color: black;
+  font-weight: 600;
+}
+
+.popup-buttons .cancel {
+  background: rgba(255, 255, 255, 0.15);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.popup-buttons .confirm:hover {
+  background: linear-gradient(90deg, #00cc66, #00aa55);
+}
+
+.popup-buttons .cancel:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+/* Animations */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
