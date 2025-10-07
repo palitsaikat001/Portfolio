@@ -3117,21 +3117,21 @@ padding-bottom: 0rem;
 /* Bigger popup with solid background */
 .popup {
   background: #121212; /* solid background */
-  border: 2px solid #00ff99;
+  border: 2px solid var(--main-color);
   border-radius: 1.5rem;
   padding: 3rem 2rem;
   text-align: center;
   color: white;
   width: 90%;
   max-width: 480px;
-  box-shadow: 0 0 40px rgba(0, 255, 120, 0.4);
+  box-shadow: 0 0 40px rgba(0, 255, 119, 0.433);
   animation: fadeIn 0.3s ease-in-out;
 }
 
 /* Loader animation */
 .loader {
   border: 5px solid rgba(255, 255, 255, 0.1);
-  border-top: 5px solid #00ff99;
+  border-top: 5px solid var(--main-color);
   border-radius: 50%;
   width: 55px;
   height: 55px;
