@@ -2880,7 +2880,11 @@ padding: 0rem;
 
 
 .edu-box h4{
-  font-size: 1.35rem;
+  font-size: 1.45rem;
+}
+
+.download-overlay h4{
+  font-size: 1.25rem;
 }
 }
 
