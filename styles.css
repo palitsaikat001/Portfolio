@@ -355,11 +355,14 @@ section {
   transform: scale(1.1); /* Zoom effect */
 }
 
+#about heading h2 {
+margin-bottom: 1.5rem;
+}
 .glass {
   background: var(--glass-color);
   border: 1px solid var(--border-color);
   border-radius: 2rem;
-  padding: 2.5rem;
+  padding: 1.25rem 1rem 1.25rem 1rem;
   backdrop-filter: blur(15px);
   box-shadow: 0 0 30px rgba(0, 255, 47, 0.05);
   max-width: 600px;
@@ -375,7 +378,7 @@ section {
 
 .heading {
   font-size: 3.5rem;
-  margin-bottom: 2rem;
+  margin-bottom: 0rem;
 }
 
 .heading span {
@@ -400,7 +403,7 @@ section {
 .about-content h3 {
   font-size: 2.25rem;
   color: var(--main-color);
-  margin-bottom: 1.5rem;
+  margin-bottom: 0.5rem;
   padding: 0rem 1rem;
 }
 
