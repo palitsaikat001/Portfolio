@@ -3158,7 +3158,7 @@ padding-bottom: 0rem;
 }
 
 .popup-buttons .confirm {
-  background: linear-gradient(90deg, #00ff99, #00cc66);
+  background: linear-gradient(90deg, #00ff47, #00cc66);
   color: black;
   font-weight: 600;
 }
@@ -3170,7 +3170,7 @@ padding-bottom: 0rem;
 }
 
 .popup-buttons .confirm:hover {
-  background: linear-gradient(90deg, #00cc66, #00aa55);
+  background: linear-gradient(90deg, #00ff47, #00aa55);
 }
 
 .popup-buttons .cancel:hover {
