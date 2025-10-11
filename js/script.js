@@ -179,10 +179,23 @@ const typed = new Typed('.multiple-text', {
   });
 
 
-  document.getElementById("toggle-btn1").addEventListener("click", function () {
-  document.querySelector("#about").scrollIntoView({ behavior: "smooth" });
-});
+//   document.getElementById("toggle-btn1").addEventListener("click", function () {
+//   document.querySelector("#about").scrollIntoView({ behavior: "smooth" });
+// });
 
+document.getElementById("toggle-btn1").addEventListener("click", function () {
+  const aboutSection = document.querySelector("#about");
+  const header = document.querySelector("header"); // adjust selector if your header has another tag/class
+  const headerHeight = header ? header.offsetHeight : 0;
+
+  // Calculate exact scroll position
+  const offsetTop = aboutSection.offsetTop - headerHeight;
+
+  window.scrollTo({
+    top: offsetTop,
+    behavior: "smooth",
+  });
+});
 
 
 document.getElementById('toggle-btn').addEventListener('click', toggleAbout);
