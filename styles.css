@@ -1734,7 +1734,9 @@ width: fit-content;
 }
 
 
-
+.database .skill-icon1 {
+  width: 125px;
+}
 
 }
 
