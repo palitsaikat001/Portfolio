@@ -38,7 +38,7 @@ body {
 
 main {
     flex: 1;
-    padding: 2rem 0rem;
+    padding: 0rem 0rem;
     margin-left: 105px;
   transition: margin-left 0.3s ease-in-out;
 }
@@ -81,6 +81,136 @@ section {
       min-height: 100vh;
 }
 
+/* Secondary header inside Home section */
+.home-header {
+  position: relative;  /* scrolls with home */
+  width: 100%;         /* full width of section */
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(0,0,0,0.3);
+  border-bottom: 1px solid var(--main-color);
+  z-index: 5;
+  margin-left: 1rem;
+}
+
+
+.home-header1 {
+  position: absolute;     /* stays at top of home section */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0rem 2rem 0rem 2.5rem ;
+  box-sizing: border-box;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+}
+/* Align nav links inside header */
+.home-header1 .home-nav a {
+  color: var(--text-color);
+  margin-left: 1.5rem;
+  font-size: 1.6rem;
+  transition: 0.3s;
+}
+
+.home-header1 .home-nav a:hover {
+  color: var(--main-color);
+}
+
+/* ===== Advanced Home Header (Name + Buttons + DateTime) ===== */
+.home-header1.advanced {
+  width: 100%;
+  padding: 1rem 2rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid var(--main-color);
+  /* border-radius: 0 0 1.5rem 1.5rem;  <-- remove this line */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 4px 20px rgba(0, 255, 71, 0.1);
+  margin-bottom: 3rem;
+  z-index: 5;
+  position: absolute;
+}
+
+
+/* Left (Name) */
+.home-header1.advanced .home-left h2 {
+  font-size: 1.5rem;
+  color: var(--main-color);
+  letter-spacing: 1px;
+}
+
+/* Right (Icons + DateTime) */
+.home-header1.advanced .home-right {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+
+.home-header1 .home-right {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+}
+/* Icon Buttons */
+.icon-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid var(--main-color);
+  background: transparent;
+  color: var(--main-color);
+  font-size: 1.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.icon-btn:hover {
+  background: var(--main-color);
+  color: var(--bg-color);
+  box-shadow: 0 0 12px var(--main-color);
+}
+
+/* Date & Time Display */
+.datetime {
+  display: flex;
+  flex-direction: column;
+  text-align: right;
+  color: var(--text-color);
+  font-family: "Questrial", sans-serif;
+  font-size: 1.2rem;
+  line-height: 1.2rem;
+  padding-left: 1rem;
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+  gap: 0.35rem;
+}
+
+
+.tz {
+  color: var(--text-color);
+}
+
+.datetime #date {
+  opacity: 0.85;
+  font-size: 1.1rem;
+}
+.datetime #time {
+  font-size: 1.3rem;
+  color: var(--main-color);
+  margin-top: 0.2rem;
+}
 
 
 /* Updated Header Styles */
@@ -88,7 +218,7 @@ section {
 .header {
     width: 125px; /* Fixed width */
     height: 100vh; /* Full height */
-    padding: 2rem;
+    padding: 1.25rem 2rem 2rem 2rem;
     background: var(--bg-color);
     display: flex;
     flex-direction: column;
@@ -186,18 +316,49 @@ section {
 
 
 
-.home {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: calc(100vh - 2rem);
+/* Header content styling */
+.home-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
 
+.home-time {
+  font-size: 1rem;
+  opacity: 0.8;
+}
+
+/* Home content */
+.home-content {
+  padding: 2rem;
+}
+
+
+
+/* .home {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: calc(100vh - 2vh);
+  margin-top: 2rem;
   padding: 0 10%;
   gap: 0rem;
   position: relative;
   scroll-margin-top: 100px; /* ← move this here */
-    padding-top: 2rem;
+    /* padding-top: 1.5rem; */
 
+/* } */
+
+
+.home {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: calc(100vh - 0vh);
+  padding: 0 10%;
+  gap: 0rem;
+  position: relative;
+  scroll-margin-top: 100px; /* ← move this here */
+    padding-top: 3.5rem;
 }
 
 .home-content {
@@ -1550,6 +1711,15 @@ width: fit-content;
 
 .contact-details li {
   margin-bottom: 0.75rem; /* was 1rem */
+  font-size: 1.5rem;
+}
+
+.contact-details a{
+  font-size: 2.25rem;
+}
+
+.contact-details1 strong{
+  font-size: 2.25rem;
 }
 
 .btn.download-cv {
@@ -2738,7 +2908,7 @@ main.shifted {
 
     flex-direction: column;
     gap: 5rem; /* Optional: reduce gap between text and image */
-    padding: 0rem;
+    padding: 5rem 0rem;
   }
 
   .home-content h1 {
@@ -2959,6 +3129,54 @@ padding: 0rem;
 .download-overlay h4{
   font-size: 1.25rem;
 }
+
+
+.datetime {
+
+margin-left: 0.95rem;
+
+}
+
+.home-header1.advanced {
+
+  height: 55px;
+      width: 100%;
+    padding: 0rem 0.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid var(--main-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 4px 20px rgba(0, 255, 71, 0.1);
+    margin-top: 6rem;
+    z-index: 5;
+    position: absolute;
+
+}
+
+.icon-btn {
+  height: 30px;
+  width: 30px;
+}
+
+.home-header.advanced .home-right {
+  margin-left: 8.85rem;
+}
+
+.contact-details li {
+  margin-bottom: 0.75rem; /* was 1rem */
+  font-size: 1rem;
+}
+
+.contact-details a{
+  font-size: 1.25rem;
+}
+
+.contact-details1 strong{
+  font-size: 1.25rem;
+}
+
 }
 
 

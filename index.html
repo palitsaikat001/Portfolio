@@ -14,6 +14,9 @@
       rel="stylesheet"
     />
 
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+
+
     <!-- boxicons -->
     <link
       href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
@@ -45,6 +48,9 @@
 
 
 
+
+
+
     <!-- header -->
     <header class="header">
       <a href="#" class="logo">Portfolio</a>
@@ -64,7 +70,80 @@
     <!-- Home Section -->
 
   <main>    
+
+
+<script>
+// ====== DATE & TIME ======
+function updateDateTime() {
+  const now = new Date();
+  const date = now.toLocaleDateString('en-GB', {
+    weekday: 'short', day: '2-digit', month: 'short', year: 'numeric'
+  });
+  const time = now.toLocaleTimeString('en-GB', { hour12: false });
+  document.getElementById('date').textContent = date;
+  document.getElementById('time').textContent = time;
+}
+setInterval(updateDateTime, 1000);
+updateDateTime();
+
+// ====== DARK / LIGHT MODE TOGGLE ======
+const toggleBtn = document.getElementById('theme-toggle');
+const icon = toggleBtn.querySelector('i');
+
+toggleBtn.addEventListener('click', () => {
+  document.body.classList.toggle('light-mode');
+  const light = document.body.classList.contains('light-mode');
+  icon.className = light ? 'bx bx-sun' : 'bx bx-moon';
+});
+
+// ====== Example light-mode style (you can expand) ======
+const style = document.createElement('style');
+style.innerHTML = `
+  body.light-mode {
+    --bg-color: #ffffff;
+    --text-color: #000000;
+    --main-color: #00cc44;
+  }
+`;
+document.head.appendChild(style);
+</script>
+
+
+
+
+
 <section class="home" id="home">
+
+
+  
+<div class="home-header1 advanced">
+  <div class="home-left">
+    <h2> &lt;/&gt; </h2>
+  </div>
+
+  <div class="home-right">
+    <a href="https://yourwebsite.com" target="_blank" class="icon-btn" title="Visit my website">
+      <i class='bx bx-globe'></i>
+    </a>
+    <a href="https://github.com/yourusername" target="_blank" class="icon-btn" title="GitHub">
+      <i class='bx bxl-github'></i>
+    </a>
+    <button id="theme-toggle" class="icon-btn" title="Toggle Theme">
+      <i class='bx bx-moon'></i>
+    </button>
+<div class="datetime">
+  <span id="date"></span>
+  <div class="time-row">
+    <span class="tz">IST</span>
+    <span id="time"></span>
+  </div>
+</div>
+
+
+
+  </div>
+</div>
+  
   <div class="home-wrapper">
     
     <div class="home-content">
@@ -727,12 +806,14 @@ innovative team, and grow together while delivering impactful results. <br> Than
         <div class="contact-info">
           <h2>Contact <span>Me!</span></h2>
           <p>
-            I’m excited to connect with you! <br> Whether you have questions about my work or just want to say hello, feel free to get in touch.<br>Thank you
+            I’m excited to connect with you! <br>
+            Whether you have questions about my work or just want to say hello,
+            feel free to get in touch.<br>Thank you <br>Thank you <br>Thank you
 
           </p>
           <ul class="contact-details">
               <li><strong>Location :</strong><br> [kolkata, West Bengal, India]</li>
-<li>
+<li class="contact-details1">
   <strong>Email : </strong>
   <a href="mailto:xxxxx.saikat.001@gmail.com?subject=Regarding%20Your%20Portfolio&body=Hello,%0D%0A%0D%0AI have reviewed your portfolio and was impressed with your work.%0D%0A I would like to discuss further opportunities with you now...%0D%0A%0D%0ABest regards,%0D%0A[Your Name]">
     <span>xxxxx.saikat.001@gmail.com</span>
