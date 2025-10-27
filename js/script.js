@@ -289,3 +289,69 @@ buttons.forEach(btn => {
   cancelBtn.addEventListener("click", () => {
     overlay.style.display = "none"; // Close popup
   });
+
+
+
+function initStarBackground(section, numStars = 150) {
+  // Create and insert canvas
+  const canvas = document.createElement('canvas');
+  section.prepend(canvas);
+  const ctx = canvas.getContext('2d');
+
+  let stars = [];
+
+  // Resize canvas to section size
+  function resizeCanvas() {
+    canvas.width = section.offsetWidth;
+    canvas.height = section.offsetHeight;
+  }
+  window.addEventListener('resize', resizeCanvas);
+  resizeCanvas();
+
+  // Create stars
+  function createStars() {
+    stars = [];
+    for (let i = 0; i < numStars; i++) {
+      stars.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        radius: Math.random() * 1.5,
+        speed: Math.random() * 0.2 + 0.05
+      });
+    }
+  }
+
+  function drawStars() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = "white";
+    for (let s of stars) {
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, s.radius, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  }
+
+  function updateStars() {
+    for (let s of stars) {
+      s.y += s.speed;
+      if (s.y > canvas.height) {
+        s.y = 0;
+        s.x = Math.random() * canvas.width;
+      }
+    }
+  }
+
+  function animate() {
+    drawStars();
+    updateStars();
+    requestAnimationFrame(animate);
+  }
+
+  createStars();
+  animate();
+}
+
+// Apply to all sections with class "stars-bg"
+document.querySelectorAll('.stars-bg').forEach(section => {
+  initStarBackground(section);
+});

@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Image Replicate — Canvas (600px)</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <style>
+    :root{
+      --bg:#111;
+      --card:#0f1720;
+      --accent:#f3f4f6;
+    }
+    html,body{height:100%;margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;}
+    body{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:linear-gradient(180deg,var(--bg), #0b1220 60%);
+      color:var(--accent);
+      padding:24px;
+      box-sizing:border-box;
+    }
+
+    .frame{
+      width:fit-content;
+      max-width:100%;
+      background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+      padding:14px;
+      border-radius:12px;
+      box-shadow: 0 10px 30px rgba(2,6,23,0.7), inset 0 1px 0 rgba(255,255,255,0.02);
+      display:flex;
+      gap:12px;
+      align-items:center;
+      flex-direction:column;
+    }
+
+    canvas{
+      display:block;
+      background:#000;
+      border-radius:6px;
+      width:600px; /* visual CSS width */
+      height:auto; /* keep aspect via attribute sizing in JS */
+      image-rendering:auto;
+      box-shadow: 0 8px 20px rgba(2,6,23,0.6);
+    }
+
+    .controls{
+      display:flex;
+      gap:8px;
+      align-items:center;
+      justify-content:center;
+      margin-top:6px;
+      flex-wrap:wrap;
+    }
+    button{
+      background:transparent;
+      color:var(--accent);
+      border:1px solid rgba(255,255,255,0.08);
+      padding:8px 12px;
+      border-radius:8px;
+      cursor:pointer;
+      font-size:14px;
+      backdrop-filter: blur(4px);
+    }
+    button:hover{transform:translateY(-2px); box-shadow:0 6px 18px rgba(2,6,23,0.6);}
+    label { font-size:13px; opacity:0.9; display:flex; gap:8px; align-items:center; }
+    input[type="checkbox"]{width:16px;height:16px; accent-color: #e2b45f;}
+
+    .note{font-size:12px; opacity:0.75; margin-top:6px; text-align:center;}
+  </style>
+</head>
+<body>
+  <div class="frame" role="main" aria-label="Image replicate canvas">
+    <canvas id="replica" aria-hidden="true"></canvas>
+    <div class="controls">
+      <button id="downloadBtn" title="Download rendered image as PNG">Download PNG</button>
+      <label title="Toggle smoothing (imageSmoothingEnabled)">
+        <input type="checkbox" id="smoothing" checked>
+        Smooth (photorealistic)
+      </label>
+      <button id="resetBtn" title="Reload image and redraw">Reload / Redraw</button>
+    </div>
+    <div class="note">Make sure <code>Bhagavann.jpg</code> is in the same folder as this HTML file.</div>
+  </div>
+
+  <script>
+    (function(){
+      const IMAGE_SRC = 'Bhagavann.jpg'; // <-- keep filename exactly; put the file next to this HTML
+      const TARGET_WIDTH = 600; // px (the requested width)
+      const canvas = document.getElementById('replica');
+      const ctx = canvas.getContext('2d', { alpha: false });
+
+      const smoothingCheckbox = document.getElementById('smoothing');
+      const downloadBtn = document.getElementById('downloadBtn');
+      const resetBtn = document.getElementById('resetBtn');
+
+      let img = new Image();
+      img.crossOrigin = 'anonymous'; // in case you host it elsewhere
+      img.src = IMAGE_SRC;
+
+      function resizeCanvasToImage(w, h){
+        // Use integer dims for crispness; canvas drawing precision uses attributes (not CSS width)
+        canvas.width = Math.round(w);
+        canvas.height = Math.round(h);
+        // ensure CSS width stays 600px visual size while actual canvas uses the computed width for pixels
+        canvas.style.width = TARGET_WIDTH + 'px';
+        canvas.style.height = Math.round((h / w) * TARGET_WIDTH) + 'px';
+      }
+
+      function drawImageSmooth(enabled){
+        // toggle image smoothing on the context
+        ctx.imageSmoothingEnabled = !!enabled;
+        // Also attempt vendor-prefixed properties for broad support
+        ctx.webkitImageSmoothingEnabled = !!enabled;
+        ctx.mozImageSmoothingEnabled = !!enabled;
+        ctx.msImageSmoothingEnabled = !!enabled;
+
+        // clear and draw
+        ctx.clearRect(0,0,canvas.width,canvas.height);
+        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+      }
+
+      img.onload = function(){
+        // compute target height preserving aspect ratio
+        const aspect = img.width / img.height;
+        const targetW = TARGET_WIDTH;
+        const targetH = Math.round(targetW / aspect);
+
+        // we'll set the canvas internal resolution to targetW x targetH
+        resizeCanvasToImage(targetW, targetH);
+
+        // Ensure highest-quality upscaling/downscaling:
+        // draw at native resolution; let browser handle smoothing (we control it via checkbox)
+        drawImageSmooth(smoothingCheckbox.checked);
+      };
+
+      img.onerror = function(e){
+        console.error('Failed to load image:', e);
+        ctx.clearRect(0,0,canvas.width,canvas.height);
+        canvas.width = 600;
+        canvas.height = 400;
+        ctx.fillStyle = '#222';
+        ctx.fillRect(0,0,canvas.width,canvas.height);
+        ctx.fillStyle = '#eee';
+        ctx.font = '16px sans-serif';
+        ctx.fillText('Error: could not load "Bhagavann.jpg".', 12, 28);
+        ctx.fillText('Place the file in the same folder as this HTML and reload.', 12, 50);
+      };
+
+      smoothingCheckbox.addEventListener('change', () => {
+        drawImageSmooth(smoothingCheckbox.checked);
+      });
+
+      downloadBtn.addEventListener('click', () => {
+        // trigger a download of the canvas bitmap
+        // use toBlob for better memory behavior
+        canvas.toBlob(function(blob){
+          if(!blob) return alert('Download failed — your browser may block canvas export.');
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = 'replicated-600w.png';
+          document.body.appendChild(a);
+          a.click();
+          a.remove();
+          setTimeout(()=>URL.revokeObjectURL(url), 2000);
+        }, 'image/png');
+      });
+
+      resetBtn.addEventListener('click', () => {
+        // reload image and redraw
+        img = new Image();
+        img.crossOrigin = 'anonymous';
+        img.src = IMAGE_SRC + '?_=' + Date.now();
+        img.onload = function(){
+          const aspect = img.width / img.height;
+          const targetW = TARGET_WIDTH;
+          const targetH = Math.round(targetW / aspect);
+          resizeCanvasToImage(targetW, targetH);
+          drawImageSmooth(smoothingCheckbox.checked);
+        };
+        img.onerror = function(){ alert('Could not reload image. Check filename and location.'); };
+      });
+
+      // Accessibility: allow keyboard shortcut "D" to download
+      document.addEventListener('keydown', (ev)=>{
+        if(ev.key.toLowerCase() === 'd' && (ev.ctrlKey || ev.metaKey) ){
+          ev.preventDefault();
+          downloadBtn.click();
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

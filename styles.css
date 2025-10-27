@@ -364,7 +364,36 @@ section {
   position: relative;
   scroll-margin-top: 100px; /* ← move this here */
     padding-top: 3.5rem;
+      position: relative;
+  overflow: hidden;
+
 }
+
+
+
+
+
+
+.stars-bg {
+  position: relative;
+  overflow: hidden;
+}
+
+.stars-bg canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  z-index: 0;
+}
+
+.stars-bg * {
+  position: relative;
+  z-index: 1;
+}
+
 
 .home-content {
   flex: 1 1 500px;
@@ -3141,6 +3170,7 @@ padding: 0rem;
 margin-left: 0.95rem;
 
 }
+
 
 .home-header1.advanced {
 
