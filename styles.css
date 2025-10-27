@@ -141,6 +141,12 @@ section {
 }
 
 
+main.shifted .home-header1.advanced {
+  width: calc(100% - 10px); /* squeeze to match side header width */
+  left: 10px;               /* move it to the right */
+}
+
+
 /* Left (Name) */
 .home-header1.advanced .home-left h2 {
   font-size: 1.5rem;
@@ -3220,6 +3226,7 @@ margin-left: 0.95rem;
 .home-header1.advanced .home-rightside {
   display:none;
 }
+
 
 }
 
