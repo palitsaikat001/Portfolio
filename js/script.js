@@ -355,3 +355,33 @@ function initStarBackground(section, numStars = 150) {
 document.querySelectorAll('.stars-bg').forEach(section => {
   initStarBackground(section);
 });
+
+
+const contactBtn = document.getElementById("contactBtn");
+  const popupForm = document.getElementById("popupForm");
+  const popupOverlay = document.getElementById("popupOverlay");
+  const closePopup = document.getElementById("closePopup");
+  const mainSection = document.querySelector(".home") || document.querySelector("main");
+
+
+  // Open popup
+  contactBtn.addEventListener("click", () => {
+    popupForm.classList.add("active");
+    popupOverlay.style.display = "block";
+    mainSection.classList.add("main-blur");
+    if (menuIcon) menuIcon.classList.add("disabled");
+  });
+
+  // Close popup when X is clicked
+  closePopup.addEventListener("click", () => {
+    popupForm.classList.remove("active");
+    popupOverlay.style.display = "none";
+     if (menuIcon) menuIcon.classList.remove("disabled");
+  });
+
+  // Close popup when clicking outside
+  popupOverlay.addEventListener("click", () => {
+    popupForm.classList.remove("active");
+    popupOverlay.style.display = "none";
+     if (menuIcon) menuIcon.classList.remove("disabled");
+  });

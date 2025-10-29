@@ -121,6 +121,14 @@ document.head.appendChild(style);
     <h2> &lt;/&gt; </h2>
   </div>
 
+
+  <div class="home-center">
+  <button id="contactBtn" class="contact-btn">Contact Me</button>
+</div>
+
+
+  
+
   <div class="home-right">
     <div class="home-rightside">
     <a href="https://yourwebsite.com" target="_blank" class="icon-btn" title="Visit my website">
@@ -875,6 +883,43 @@ innovative team, and grow together while delivering impactful results. <br> Than
     </footer>
 
     </main>
+
+
+    <!-- Popup Contact Form -->
+<div id="popupOverlay" class="popup-overlay"></div>
+
+<div id="popupForm" class="popup-form">
+  
+  <div class="popup-content">
+
+    
+    <span id="closePopup" class="close-btn">&times;</span>
+    
+
+        <div class="popup-email">
+      <strong>Email :</strong>
+      <a
+        href="mailto:xxxxx.saikat.001@gmail.com?subject=Regarding%20Your%20Portfolio&body=Hello,%0D%0A%0D%0AI have reviewed your portfolio and was impressed with your work.%0D%0AI would like to discuss further opportunities with you.%0D%0A%0D%0ABest regards,%0D%0A[Your Name]"
+        target="_blank"
+      >
+        <span>xxxxx.saikat.001@gmail.com</span>
+      </a>
+    </div>
+    <form action="xxxxx@gmail.com" method="post" enctype="text/plain">
+      <div class="input-box">
+        <input type="text" placeholder="Full Name" required />
+        <input type="email" placeholder="Email Address" required />
+      </div>
+      <div class="input-box">
+        <input type="number" placeholder="Mobile Number" />
+        <input type="text" placeholder="Email Subject" />
+      </div>
+      <textarea cols="30" rows="10" placeholder="Your Message"></textarea>
+      <input type="submit" value="Send Message" class="btn" />
+    </form>
+  </div>
+</div>
+
 
     <!-- Scroll reveal -->
     <script src="https://unpkg.com/scrollreveal"></script>
