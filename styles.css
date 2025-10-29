@@ -147,6 +147,26 @@ main.shifted .home-header1.advanced {
 }
 
 
+.home-header1.advanced .home-left {
+    display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.home-header1.advanced .home-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+/* Keep left, right, and center areas balanced */
+.home-left,
+.home-right,
+.home-center {
+  flex: 1;
+}
+
 /* Left (Name) */
 .home-header1.advanced .home-left h2 {
   font-size: 1.5rem;
@@ -157,8 +177,9 @@ main.shifted .home-header1.advanced {
 /* Right (Icons + DateTime) */
 .home-header1.advanced .home-right {
   display: flex;
+  justify-content: flex-end;
   align-items: center;
-  gap: 1.2rem;
+  gap: 1rem;
 }
 
 .home-header1.advanced .home-rightside {
@@ -168,20 +189,9 @@ main.shifted .home-header1.advanced {
 }
 
 /* Header Contact Button */
-.contact-btn {
-  background: var(--main-color);
-  color: #fff;
-  border: none;
-  padding: 0.6rem 1.4rem;
-  border-radius: 30px;
-  cursor: pointer;
-  font-size: 1rem;
-  font-weight: 600;
-  transition: 0.3s ease;
-}
-.contact-btn:hover {
-  background: var(--hover-color);
-  transform: scale(1.05);
+
+#home .btn-alt {
+    padding: 0.6rem 1.4rem;
 }
 
 /* ================================
