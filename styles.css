@@ -141,10 +141,11 @@ section {
 }
 
 
-main.shifted .home-header1.advanced {
+main.shifted .home-header1.advanced .home-left {
   width: calc(100% - 10px); /* squeeze to match side header width */
   left: 10px;               /* move it to the right */
 }
+
 
 
 .home-header1.advanced .home-left {
@@ -193,6 +194,11 @@ main.shifted .home-header1.advanced {
 #home .btn-alt {
     padding: 0.6rem 1.4rem;
 }
+
+main.shifted #home .btn-alt {
+  padding: 0.4rem 0.8rem;
+}
+
 
 /* ================================
    POPUP CONTACT FORM
