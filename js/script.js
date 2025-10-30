@@ -141,42 +141,51 @@ const typed = new Typed('.multiple-text', {
 
 
 
-  const readMoreButtons = document.querySelectorAll('.read-more-btn');
-  const readLessButtons = document.querySelectorAll('.read-less-btn');
-  const allBoxes = document.querySelectorAll('.exp-box');
+const readMoreButtons = document.querySelectorAll('.read-more-btn');
+const readLessButtons = document.querySelectorAll('.read-less-btn');
+const allBoxes = document.querySelectorAll('.exp-box');
 
-  readMoreButtons.forEach(button => {
-    button.addEventListener('click', () => {
-      const currentBox = button.closest('.exp-box');
-      const extraContent = currentBox.querySelector('.extra-content');
+readMoreButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    const currentBox = button.closest('.exp-box');
+    const extraContent = currentBox.querySelector('.extra-content');
+    const expHeading = document.querySelector('.services-box.experience h3'); // your Experience heading
 
-      // Hide all other boxes
-      allBoxes.forEach(box => {
-        if (box !== currentBox) box.style.display = 'none';
-      });
+    // Hide all other boxes
+    allBoxes.forEach(box => {
+      if (box !== currentBox) box.style.display = 'none';
+    });
 
-      // Show this one’s extra content
-      extraContent.classList.remove('hidden');
-      button.style.display = 'none';
+    // Hide the Experience heading
+    if (expHeading) expHeading.style.display = 'none';
+
+    // Show this one’s extra content
+    extraContent.classList.remove('hidden');
+    button.style.display = 'none';
+  });
+});
+
+readLessButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    const currentBox = button.closest('.exp-box');
+    const extraContent = currentBox.querySelector('.extra-content');
+    const readMoreBtn = currentBox.querySelector('.read-more-btn');
+    const expHeading = document.querySelector('.services-box.experience h3'); // same heading
+
+    // Hide extra content and show "read more" again
+    extraContent.classList.add('hidden');
+    readMoreBtn.style.display = 'inline';
+
+    // Show heading again
+    if (expHeading) expHeading.style.display = 'block';
+
+    // Show all boxes again
+    allBoxes.forEach(box => {
+      box.style.display = 'block';
     });
   });
+});
 
-  readLessButtons.forEach(button => {
-    button.addEventListener('click', () => {
-      const currentBox = button.closest('.exp-box');
-      const extraContent = currentBox.querySelector('.extra-content');
-      const readMoreBtn = currentBox.querySelector('.read-more-btn');
-
-      // Hide extra content and show "read more" again
-      extraContent.classList.add('hidden');
-      readMoreBtn.style.display = 'inline';
-
-      // Show all boxes again
-      allBoxes.forEach(box => {
-        box.style.display = 'block';
-      });
-    });
-  });
 
 
 //   document.getElementById("toggle-btn1").addEventListener("click", function () {

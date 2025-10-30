@@ -193,6 +193,7 @@ main.shifted .home-header1.advanced .home-left {
 
 #home .btn-alt {
     padding: 0.6rem 1rem;
+    cursor:pointer;
 }
 
 main.shifted #home .btn-alt {
