@@ -3477,6 +3477,7 @@ margin-left: 0.95rem;
 
 .experience-list.expanded {
   height: 338px;           /* expanded size */
+  justify-content: flex-start;
 }
 
 }
