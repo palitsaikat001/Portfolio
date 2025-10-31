@@ -3471,11 +3471,11 @@ margin-left: 0.95rem;
 }
 
 .experience-list {
-  height: 295px;
+  height: 305px;
 }
 
 .experience-list.expanded {
-  height: 295px;           /* expanded size */
+  height: 338px;           /* expanded size */
 }
 
 }
