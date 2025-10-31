@@ -1247,12 +1247,13 @@ h4 .date {
 
   overflow-x: hidden;
 box-sizing: border-box;
-
+ justify-content: center;
   
 }
 
 .experience-list.expanded {
-  height: 238px;           /* expanded size */
+  height: 238px;    
+  justify-content: flex-start;       /* expanded size */
 }
 
 
