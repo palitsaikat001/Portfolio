@@ -145,6 +145,8 @@ const readMoreButtons = document.querySelectorAll('.read-more-btn');
 const readLessButtons = document.querySelectorAll('.read-less-btn');
 const allBoxes = document.querySelectorAll('.exp-box');
 
+const experienceList = document.querySelector('.experience-list');
+
 readMoreButtons.forEach(button => {
   button.addEventListener('click', () => {
     const currentBox = button.closest('.exp-box');
@@ -158,6 +160,9 @@ readMoreButtons.forEach(button => {
 
     // Hide the Experience heading
     if (expHeading) expHeading.style.display = 'none';
+
+    // Add expanded class (no specific height in JS)
+    experienceList.classList.add('expanded');
 
     // Show this one’s extra content
     extraContent.classList.remove('hidden');
@@ -183,6 +188,9 @@ readLessButtons.forEach(button => {
     allBoxes.forEach(box => {
       box.style.display = 'block';
     });
+
+    // Remove expanded class
+    experienceList.classList.remove('expanded');
   });
 });
 

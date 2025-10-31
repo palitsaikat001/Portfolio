@@ -1210,9 +1210,16 @@ transform: scale(0.9);
   text-align: center;
   border: 0.15rem solid var(--bg-color);
   transition: border 0.3s ease, transform 0.3s ease;
-  height: auto;
-  
+
+
 }
+
+
+
+
+
+
+
 
 .services-box.experience:hover {
   border-color: var(--main-color);
@@ -1221,7 +1228,7 @@ transform: scale(0.9);
 
 .services-box.experience h3 {
   font-size: 1.8rem;
-  margin-bottom: 1rem;
+  margin-bottom: 0.65rem;
 }
 
 h4 .date {
@@ -1234,16 +1241,53 @@ h4 .date {
   display: flex;
   flex-direction: column;
   gap: 1.125rem;
+
+  height: 205px;
+  overflow-y: auto;
+
+  overflow-x: hidden;
+box-sizing: border-box;
+
+  
 }
+
+.experience-list.expanded {
+  height: 238px;           /* expanded size */
+}
+
+
+.experience-list::-webkit-scrollbar {
+  width: 5px;
+}
+.experience-list::-webkit-scrollbar-thumb {
+  background-color: var(--main-color);
+  border-radius: 10px;
+}
+
+
 
 .exp-box {
   background: var(--second-bg-color);
-  padding: 0.5rem 0.5rem 0rem 0.5rem;
+  padding: 0.5rem 0.25rem 0rem 0.25rem;
   border-radius: 0.75rem;
   border: 0.15rem solid var(--bg-color);
   text-align: left;
   transition: border 0.3s ease, transform 0.3s ease;
+
 }
+
+.expp {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+  line-height: 1.6;
+}
+
+.expp li {
+  margin-bottom: 0.6rem;
+  font-size: 1.25rem;
+  margin-top: 0.6rem ;
+}
+
 
 .exp-box:hover {
   border-color: var(--second-bg-color);
@@ -1318,7 +1362,7 @@ h4 .date {
 /* === Education Box === */
 .services-box.education {
   background: var(--second-bg-color);
-  padding: 1.5rem 1.125rem;
+  padding: 1.125rem 1.125rem;
   border-radius: 1.125rem;
   text-align: center;
   border: 0.15rem solid var(--bg-color);
@@ -2508,6 +2552,11 @@ width: fit-content;
     padding: 1rem;
   }
 
+
+  .btn-wrapper {
+    justify-items: center;
+  }
+
   .logo {
     font-size: 1.8rem;
   }
@@ -3325,6 +3374,14 @@ padding: 0rem;
   .exp-box p{
     text-align: center;
   }
+
+  .exp-box h4{
+    font-size: 1.5rem;
+  }
+
+  .exp-box p {
+    font-size: 1.25rem;
+  }
  
   .exp-box {
     padding: 1.125rem 0rem;
@@ -3411,6 +3468,14 @@ margin-left: 0.95rem;
 
 .popup-form {
   margin-left: 0px;
+}
+
+.experience-list {
+  height: 295px;
+}
+
+.experience-list.expanded {
+  height: 295px;           /* expanded size */
 }
 
 }
