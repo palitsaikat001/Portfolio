@@ -3480,6 +3480,10 @@ margin-left: 0.95rem;
   justify-content: flex-start;
 }
 
+
+#services1 .services-container.dual {
+  gap: 2rem;
+}
 }
 
 
