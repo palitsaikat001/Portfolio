@@ -1247,7 +1247,6 @@ h4 .date {
 
   overflow-x: hidden;
 box-sizing: border-box;
- justify-content: center;
   
 }
 
@@ -3065,6 +3064,9 @@ padding: 0 2.5rem;
     margin: 0 1rem; 
   } */
 
+  .skill-icon {
+    width: 50px;
+  }
 
 main {
     margin: 0px 10px 0px 10px;
@@ -3473,6 +3475,7 @@ margin-left: 0.95rem;
 
 .experience-list {
   height: 305px;
+  justify-content: center;
 }
 
 .experience-list.expanded {
