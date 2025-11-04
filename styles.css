@@ -1639,6 +1639,7 @@ width: fit-content;
 }
 
 
+
 .portfolio-box {
   position: relative;
   border-radius: 1.5rem;
@@ -2136,6 +2137,18 @@ width: fit-content;
 
 .contact-details a{
   font-size: 2.25rem;
+}
+
+
+.contact-details1 span {
+  color: #00ff48;
+  cursor: pointer;          /* ✅ shows clickable hand icon */
+  text-decoration: none;    /* ensures it's clean by default */
+  transition: text-decoration 0.2s ease;
+}
+
+.contact-details1 span:hover {
+  text-decoration: underline; /* ✅ adds underline on hover */
 }
 
 .contact-details1 strong{
