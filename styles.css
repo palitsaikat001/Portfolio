@@ -2101,6 +2101,8 @@ width: fit-content;
 
 }
 
+
+
 .contact-info .social-media a {
   margin: 2.5rem 1.5rem 2rem 0; /* Removes the extra space around icons */
 }
@@ -2169,7 +2171,40 @@ width: fit-content;
   border-radius: 0.75rem; /* was 1rem */
   box-shadow: 0 0 0.75rem rgba(0, 0, 0, 0.1); /* was 1rem */
   margin-top: 3.75rem; /* was 5rem */
+
+  
 }
+
+.contact-form-wrapper textarea {
+  overflow-y: auto; /* allow internal scroll */
+  scroll-behavior: smooth;
+}
+
+/* === Custom Slim Green Scrollbar === */
+.contact-form-wrapper textarea::-webkit-scrollbar {
+  width: 6px; /* slim */
+}
+
+.contact-form-wrapper textarea::-webkit-scrollbar-track {
+  background: rgba(0, 255, 72, 0.05);
+  border-radius: 10px;
+}
+
+.contact-form-wrapper textarea::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #00ff48, #009933);
+  border-radius: 10px;
+}
+
+.contact-form-wrapper textarea::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #00ff88, #00cc44);
+}
+
+/* Firefox support */
+.contact-form-wrapper textarea {
+  scrollbar-width: thin;
+  scrollbar-color: #00ff48 rgba(0, 255, 72, 0.1);
+}
+
 
 /* Form */
 .contact form {
