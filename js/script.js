@@ -441,3 +441,18 @@ const contactBtn = document.getElementById("contactBtn");
     }
   });
 });
+
+
+
+const messageBox = document.getElementById("message");
+
+messageBox.addEventListener("focus", () => {
+  // Only fill if it's empty (so it doesn’t overwrite user typing)
+  if (messageBox.value.trim() === "") {
+    messageBox.value = `Hello,
+I have reviewed your portfolio and was impressed with your work.
+I would like to discuss further opportunities with you now...
+Best regards,
+[Your Name]`;
+  }
+});
