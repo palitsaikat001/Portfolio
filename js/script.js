@@ -402,3 +402,42 @@ const contactBtn = document.getElementById("contactBtn");
     popupOverlay.style.display = "none";
      if (menuIcon) menuIcon.classList.remove("disabled");
   });
+
+
+  document.addEventListener("DOMContentLoaded", () => {
+  const boxes = document.querySelectorAll(".portfolio-box");
+  const aboutContent = document.querySelector(".about-content1.glass1");
+  const container = document.querySelector(".portfolio-container");
+
+  boxes.forEach(box => {
+    const detailsBtn = box.querySelector(".details-btn");
+    const closeBtn = box.querySelector(".close-details");
+
+    if (detailsBtn) {
+      detailsBtn.addEventListener("click", e => {
+        e.stopPropagation();
+        
+
+        // Make background transparent
+        // aboutContent.classList.add("transparent");
+
+        // Hide other projects
+        container.classList.add("hide-others");
+
+        // Show only this one
+        box.classList.add("active");
+      });
+    }
+
+    if (closeBtn) {
+      closeBtn.addEventListener("click", e => {
+        e.stopPropagation();
+
+        // Remove transparency and restore others
+        aboutContent.classList.remove("transparent");
+        container.classList.remove("hide-others");
+        box.classList.remove("active");
+      });
+    }
+  });
+});
