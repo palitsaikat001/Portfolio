@@ -2244,7 +2244,7 @@ width: fit-content;
 
 .contact form textarea {
   resize: none;
-  height: 13.5rem; /* was 18rem */
+  height: 17.5rem; /* was 18rem */
 }
 
 .contact form .input-box input:hover,
@@ -2505,6 +2505,12 @@ width: fit-content;
   .services-box.experience {
     height: auto;
   }
+
+  .glass1 {
+  padding: 1rem;
+  height: auto;
+  max-height: 50vh;
+}
 }
 
 @media (max-width: 1025px) {
@@ -2600,7 +2606,7 @@ width: fit-content;
 
   .contact-info {
         width: 100%;
-    min-height: 100vh;
+    min-height: 50vh;
     justify-content:center;
     padding-top: 0rem;
           margin-top: 0rem;

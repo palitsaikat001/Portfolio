@@ -446,13 +446,24 @@ const contactBtn = document.getElementById("contactBtn");
 
 const messageBox = document.getElementById("message");
 
-messageBox.addEventListener("focus", () => {
-  // Only fill if it's empty (so it doesn’t overwrite user typing)
-  if (messageBox.value.trim() === "") {
-    messageBox.value = `Hello,
+const defaultMessage = `Hello,
 I have reviewed your portfolio and was impressed with your work.
 I would like to discuss further opportunities with you now...
+
 Best regards,
 [Your Name]`;
+
+// On focus → if empty, show default text
+messageBox.addEventListener("focus", () => {
+  if (messageBox.value.trim() === "") {
+    messageBox.value = defaultMessage;
   }
 });
+
+// On blur → if user didn't change anything, remove text and show placeholder
+messageBox.addEventListener("blur", () => {
+  if (messageBox.value.trim() === defaultMessage.trim()) {
+    messageBox.value = ""; // Clears it so placeholder shows
+  }
+});
+
