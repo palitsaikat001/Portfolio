@@ -1077,11 +1077,19 @@ color:var(--text-color)
   transition: transform 0.3s ease;
 }
 
+#services1 .skill-icon {
+  width: 90px;
+}
+
+
+
 .skill-icon1 {
   width: 125px; /* was 80px */
   text-align: center;
   transition: transform 0.3s ease;
 }
+
+
 
 .skill-icon1 img {
   width: 45px;
@@ -3052,7 +3060,7 @@ padding: 0 2.5rem;
 }
 
 .skill-icon1 {
-   width: 55px; /* same as .skill-icon */
+   width: 65px; /* same as .skill-icon */
 }
 
   .skill-icon1:nth-last-child(-n+2) {
