@@ -444,7 +444,32 @@ const contactBtn = document.getElementById("contactBtn");
 
 
 
-const messageBox = document.getElementById("message");
+// const messageBox = document.getElementById("message");
+
+// const defaultMessage = `Hello,
+// I have reviewed your portfolio and was impressed with your work.
+// I would like to discuss further opportunities with you now...
+
+// Best regards,
+// [Your Name]`;
+
+// // On focus → if empty, show default text
+// messageBox.addEventListener("focus", () => {
+//   if (messageBox.value.trim() === "") {
+//     messageBox.value = defaultMessage;
+//   }
+// });
+
+// // On blur → if user didn't change anything, remove text and show placeholder
+// messageBox.addEventListener("blur", () => {
+//   if (messageBox.value.trim() === defaultMessage.trim()) {
+//     messageBox.value = ""; // Clears it so placeholder shows
+//   }
+// });
+
+
+// Select ALL textareas with id="message"
+const messageBoxes = document.querySelectorAll("#message");
 
 const defaultMessage = `Hello,
 I have reviewed your portfolio and was impressed with your work.
@@ -453,17 +478,15 @@ I would like to discuss further opportunities with you now...
 Best regards,
 [Your Name]`;
 
-// On focus → if empty, show default text
-messageBox.addEventListener("focus", () => {
-  if (messageBox.value.trim() === "") {
-    messageBox.value = defaultMessage;
-  }
-});
+// Apply logic to each textarea separately
+messageBoxes.forEach(messageBox => {
 
-// On blur → if user didn't change anything, remove text and show placeholder
-messageBox.addEventListener("blur", () => {
-  if (messageBox.value.trim() === defaultMessage.trim()) {
-    messageBox.value = ""; // Clears it so placeholder shows
-  }
+  // On focus → if empty, show default text
+  messageBox.addEventListener("focus", () => {
+    if (messageBox.value.trim() === "") {
+      messageBox.value = defaultMessage;
+    }
+  });
+
 });
 

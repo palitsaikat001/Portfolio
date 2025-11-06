@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Thank You!</title>
+  <style>
+    body {
+      background:#0a0a0a;
+      color:#00ff48;
+      font-family: Poppins, sans-serif;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      height:95vh;
+      text-align:center;
+      padding: 0 20px;
+    }
+
+    h1 {
+      font-size:4.5rem;
+      margin-bottom:10px;
+    }
+
+    p {
+      font-size:2.25rem;
+      margin-bottom: 2.2rem;
+      opacity: 0.9;
+      line-height:1.5;
+    }
+
+    .back-btn {
+      display:inline-block;
+      font-size:2.25rem;
+      padding:0.9rem 2.8rem;
+      color:#0a0a0a;
+      background:#00ff48;
+      font-weight:600;
+      border-radius:0.65rem;
+      cursor:pointer;
+      text-decoration:none;
+      transition:0.3s;
+    }
+
+    .back-btn:hover {
+      background:#00c93c;
+    }
+
+    /* ✅ MOBILE BIG UI */
+    @media (max-width: 450px) {
+
+      body {
+        padding: 0 18px;
+      }
+
+      h1 {
+        font-size: 4.5rem; /* Bigger title */
+      }
+
+      p {
+        font-size: 1.55rem; /* Bigger text */
+        margin-bottom: 2.5rem;
+        line-height: 1.55;
+      }
+
+      .back-btn {
+        font-size: 1.55rem; /* Larger button text */
+        padding: 1rem 3rem; /* Larger button */
+        border-radius: 0.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <h1>✅ Message Sent!</h1>
+    <p>Thank you for reaching out. I’ll get back to you soon.</p>
+
+    <a class="back-btn" href="javascript:history.back()">⬅ Go Back</a>
+  </div>
+</body>
+</html>
