@@ -2103,6 +2103,7 @@ width: fit-content;
   justify-content: center;
   align-items: center;
   background: linear-gradient(to right, #222, #333);
+  
 }
 
 /* Container for the two columns */
@@ -3486,8 +3487,13 @@ main.shifted {
   .contact-details {
     font-size: 1.35rem;
     padding: 0 0.5rem;
+    
   }
 
+
+  .contact-info {
+      background: linear-gradient(to right, #222, #333);
+  }
   .contact-container {
     padding: 0 0rem;
     gap: 2rem;
