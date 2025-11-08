@@ -1089,6 +1089,10 @@ color:var(--text-color)
   transition: transform 0.3s ease;
 }
 
+.type1 {
+  width: 55px;
+}
+
 
 
 .skill-icon1 img {
