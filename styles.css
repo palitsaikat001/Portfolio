@@ -2343,6 +2343,10 @@ width: fit-content;
 
 @media screen and (min-width: 1400px) {
 
+  .type1 {
+    width: 10px;
+  }
+
   .home-wrapper {
     zoom: 120%;
   }
@@ -2406,7 +2410,7 @@ width: fit-content;
 
 
 .skill-icon1 {
-  width: 120px;
+  width: 55px;
 }
 
 .home-header1.advanced {
