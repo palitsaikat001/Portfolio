@@ -490,3 +490,51 @@ messageBoxes.forEach(messageBox => {
 
 });
 
+
+
+const countryEl = document.getElementById('country');
+let isBharat = true;
+
+setInterval(() => {
+  countryEl.classList.add('fade-out');
+  setTimeout(() => {
+    countryEl.textContent = isBharat ? 'INDIA' : 'BHARAT';
+    isBharat = !isBharat;
+    countryEl.classList.remove('fade-out');
+  }, 1000);
+}, 3000);
+
+
+
+
+// const words = ["BHARAT", "INDIA"];
+// let i = 0;
+// let j = 0;
+// let currentWord = "";
+// let isDeleting = false;
+// const country = document.getElementById("country");
+
+// function typeEffect() {
+//   currentWord = words[i];
+//   country.textContent = currentWord.substring(0, j);
+
+//   if (!isDeleting && j < currentWord.length) {
+//     j++;
+//     setTimeout(typeEffect, 150);
+//   } else if (isDeleting && j > 0) {
+//     j--;
+//     setTimeout(typeEffect, 100);
+//   } else {
+//     if (!isDeleting) {
+//       isDeleting = true;
+//       setTimeout(typeEffect, 1000);
+//     } else {
+//       isDeleting = false;
+//       i = (i + 1) % words.length;
+//       setTimeout(typeEffect, 200);
+//     }
+//   }
+// }
+// typeEffect();
+
+

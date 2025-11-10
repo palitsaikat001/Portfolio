@@ -48,6 +48,18 @@ main.shifted {
   margin: 0px 0px 0px 90px; /* shift right */
 }
 
+
+#country {
+  display: inline-block;
+  transition: opacity 1s ease;
+}
+.fade-out {
+  opacity: 0;
+}
+
+
+
+
 #loading-overlay {
   position: fixed;
   top: 0; left: 0;
@@ -3069,7 +3081,7 @@ padding: 0 2.5rem;
 }
 
 .skill-icon1 {
-   width: 65px; /* same as .skill-icon */
+   width: 59px; /* same as .skill-icon */
 }
 
   .skill-icon1:nth-last-child(-n+2) {
