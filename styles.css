@@ -2356,7 +2356,7 @@ width: fit-content;
 @media screen and (min-width: 1400px) {
 
   .type1 {
-    width: 10px;
+    width: 55px;
   }
 
   .home-wrapper {
@@ -2421,9 +2421,7 @@ width: fit-content;
 }
 
 
-.skill-icon1 {
-  width: 55px;
-}
+
 
 .home-header1.advanced {
   padding: 1rem 5rem;
