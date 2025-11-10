@@ -500,6 +500,7 @@ display: none;
     transition: all 0.4s ease-in-out;
 }
 
+
 .navbar a::before {
     content: "";
     position: absolute;
@@ -1093,6 +1094,43 @@ color:var(--text-color)
   width: 90px;
 }
 
+/* === Devicon icons styled same as images === */
+.skill-icon i,
+.skill-icon1 i {
+  width: 45px;
+  height: 45px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  border-radius: 50%;
+  border: 2px solid var(--bg-color);
+  padding: 3px;
+  color: var(--text-color);
+  background: transparent;
+  transition: all 0.3s ease;
+}
+
+/* ✅ When hovering on the skill group */
+.skill-group:hover .skill-icon i,
+ .skill-group:hover .skill-icon1 i{
+  border-color: var(--main-color);
+  box-shadow: 0 0 10px var(--main-color);
+}
+
+/* ✅ Slight grow effect (no shaking) */
+.skill-icon:hover i,
+.skill-icon1:hover i {
+  transform: scale(1.08);
+}
+
+/* ❌ Remove continuous animation on hover */
+.skill-group:hover .skill-icon i,
+.skill-group:hover .skill-icon1 i {
+  animation: none;
+}
+
+
 
 
 .skill-icon1 {
@@ -1184,10 +1222,11 @@ transform: scale(0.9);
   transform-origin: center;
   
 }
-#services1 .skill-icon img{
+#services1 .skill-icon i{
 
   width: 35px;
   height: 35px;
+  font-size: 23px;
 
 }
 #services1 .skill-icon1 img{
