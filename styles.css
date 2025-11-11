@@ -1560,7 +1560,7 @@ box-sizing: border-box;
   align-items: center;
   justify-content: center;
   font-weight: 500;
-  font-size: 1.3rem; /* was 1.75rem */
+  font-size: 1.5rem; /* was 1.75rem */
   text-align: center;
   transition: transform 0.2s ease;
 }
@@ -1568,6 +1568,8 @@ box-sizing: border-box;
 .language-circle:hover {
   transform: scale(1.05);
 }
+
+
 
 .edu-box.languages-known p {
   margin-bottom: 5.5px;
