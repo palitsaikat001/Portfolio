@@ -308,24 +308,31 @@ buttons.forEach(btn => {
   });
 
 
+// Get both toggle buttons
+const toggleBtns = [
+  document.getElementById("theme-toggle"),
+  document.getElementById("header-theme-toggle")
+].filter(Boolean); // filter in case one doesn’t exist on bigger screens
+
+let isStarsActive = true; // 🌟 start as ON
+let animationFrames = new Map();
 
 function initStarBackground(section, numStars = 150) {
-  // Create and insert canvas
-  const canvas = document.createElement('canvas');
-  section.prepend(canvas);
-  const ctx = canvas.getContext('2d');
+  let canvas = section.querySelector("canvas");
+  if (!canvas) {
+    canvas = document.createElement("canvas");
+    section.prepend(canvas);
+  }
 
+  const ctx = canvas.getContext("2d");
   let stars = [];
+  let animationId;
 
-  // Resize canvas to section size
   function resizeCanvas() {
     canvas.width = section.offsetWidth;
     canvas.height = section.offsetHeight;
   }
-  window.addEventListener('resize', resizeCanvas);
-  resizeCanvas();
 
-  // Create stars
   function createStars() {
     stars = [];
     for (let i = 0; i < numStars; i++) {
@@ -361,17 +368,55 @@ function initStarBackground(section, numStars = 150) {
   function animate() {
     drawStars();
     updateStars();
-    requestAnimationFrame(animate);
+    animationId = requestAnimationFrame(animate);
+    animationFrames.set(section, animationId);
   }
 
+  window.addEventListener("resize", resizeCanvas);
+  resizeCanvas();
   createStars();
   animate();
 }
 
-// Apply to all sections with class "stars-bg"
-document.querySelectorAll('.stars-bg').forEach(section => {
+// 🌟 Start stars ON by default
+document.querySelectorAll(".stars-bg").forEach(section => {
   initStarBackground(section);
 });
+
+// 🌟 Function to update both icons together
+function updateIcons() {
+  toggleBtns.forEach(btn => {
+    btn.innerHTML = isStarsActive
+      ? "<i class='bx bx-star'></i>" // stars ON
+      : "<i class='bx bx-x'></i>";   // stars OFF
+  });
+}
+
+// 🌟 Add event listener to both buttons
+toggleBtns.forEach(btn => {
+  btn.addEventListener("click", () => {
+    if (isStarsActive) {
+      // ❌ Stop and remove canvases
+      animationFrames.forEach((id) => cancelAnimationFrame(id));
+      animationFrames.clear();
+      document.querySelectorAll(".stars-bg canvas").forEach(c => c.remove());
+      isStarsActive = false;
+    } else {
+      // ✅ Start stars again
+      document.querySelectorAll(".stars-bg").forEach(section => {
+        initStarBackground(section);
+      });
+      isStarsActive = true;
+    }
+
+    // 🔁 Update both buttons’ icons
+    updateIcons();
+  });
+});
+
+// Initial icon setup
+updateIcons();
+
 
 
 const contactBtn = document.getElementById("contactBtn");

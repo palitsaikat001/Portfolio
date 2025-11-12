@@ -65,6 +65,13 @@
         <a href="#portfolio">Projects</a>
         <a href="#contact">Contact</a>
       </nav>
+
+
+        <button id="header-theme-toggle" class="icon-btn" title="Toggle Starfield">
+    <i class='bx bx-star'></i>
+  </button>
+
+  
     </header>
 
     <!-- Home Section -->
@@ -87,25 +94,25 @@ setInterval(updateDateTime, 1000);
 updateDateTime();
 
 // ====== DARK / LIGHT MODE TOGGLE ======
-const toggleBtn = document.getElementById('theme-toggle');
-const icon = toggleBtn.querySelector('i');
+// const toggleBtn = document.getElementById('theme-toggle');
+// const icon = toggleBtn.querySelector('i');
 
-toggleBtn.addEventListener('click', () => {
-  document.body.classList.toggle('light-mode');
-  const light = document.body.classList.contains('light-mode');
-  icon.className = light ? 'bx bx-sun' : 'bx bx-moon';
-});
+// toggleBtn.addEventListener('click', () => {
+//   document.body.classList.toggle('light-mode');
+//   const light = document.body.classList.contains('light-mode');
+//   icon.className = light ? 'bx bx-sun' : 'bx bx-moon';
+// });
 
 // ====== Example light-mode style (you can expand) ======
-const style = document.createElement('style');
-style.innerHTML = `
-  body.light-mode {
-    --bg-color: #ffffff;
-    --text-color: #000000;
-    --main-color: #00cc44;
-  }
-`;
-document.head.appendChild(style);
+// const style = document.createElement('style');
+// style.innerHTML = `
+//   body.light-mode {
+//     --bg-color: #ffffff;
+//     --text-color: #000000;
+//     --main-color: #00cc44;
+//   }
+// `;
+// document.head.appendChild(style);
 </script>
 
 
@@ -138,7 +145,7 @@ document.head.appendChild(style);
       <i class='bx bxl-github'></i>
     </a>
     <button id="theme-toggle" class="icon-btn" title="Toggle Theme">
-      <i class='bx bx-moon'></i>
+      <i class='bx bx-star'></i>
     </button>
     </div>
 <div class="datetime">
@@ -1036,6 +1043,7 @@ Best regards,
 
    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
 
   </body>
 </html>

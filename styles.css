@@ -58,6 +58,7 @@ main.shifted {
 }
 
 
+  #header-theme-toggle { display: none; }
 
 
 #loading-overlay {
@@ -3360,6 +3361,8 @@ padding: 0 2.5rem;
     margin: 0 1rem; 
   } */
 
+
+    #header-theme-toggle { display: block; }
   .skill-icon {
     width: 50px;
   }
@@ -3794,6 +3797,9 @@ margin-left: 0.95rem;
 #services1 .services-container.dual {
   gap: 2rem;
 }
+
+
+
 }
 
 
