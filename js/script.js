@@ -201,7 +201,7 @@ readLessButtons.forEach(button => {
 // });
 
 document.getElementById("toggle-btn1").addEventListener("click", function () {
-  const aboutSection = document.querySelector("#about");
+  const aboutSection = document.querySelector("#contact");
 
   // For mobile screens — apply header offset
   if (window.innerWidth <= 768) {
@@ -216,7 +216,7 @@ document.getElementById("toggle-btn1").addEventListener("click", function () {
   } 
   // For desktop screens — normal scrollIntoView
   else {
-    aboutSection.scrollIntoView({ behavior: "smooth" });
+    aboutSection.scrollIntoView({ behavior: "" });
   }
 });
 
