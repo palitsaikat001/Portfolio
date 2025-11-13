@@ -216,7 +216,7 @@ document.getElementById("toggle-btn1").addEventListener("click", function () {
   } 
   // For desktop screens — normal scrollIntoView
   else {
-    aboutSection.scrollIntoView({ behavior: "" });
+    aboutSection.scrollIntoView({ behavior: "smooth" });
   }
 });
 
