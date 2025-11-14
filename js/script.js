@@ -583,3 +583,20 @@ setInterval(() => {
 // typeEffect();
 
 
+
+
+  const tabs = document.querySelectorAll(".skills-tab");
+  const contents = document.querySelectorAll(".skills-content");
+
+  tabs.forEach(tab => {
+    tab.addEventListener("click", () => {
+      // Remove active classes
+      tabs.forEach(t => t.classList.remove("active"));
+      contents.forEach(c => c.classList.remove("active"));
+
+      // Add active class to the clicked tab and its content
+      tab.classList.add("active");
+      const target = document.getElementById(tab.dataset.target);
+      target.classList.add("active");
+    });
+  });

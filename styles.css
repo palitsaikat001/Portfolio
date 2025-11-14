@@ -963,7 +963,7 @@ color:var(--text-color)
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content:flex-start;
   align-items: center;
   padding: 1rem 1.5rem 0rem 1.5rem;
 }
@@ -1092,6 +1092,8 @@ color:var(--text-color)
   transition: transform 0.3s ease;
 }
 
+
+
 #services1 .skill-icon {
   width: 90px;
 }
@@ -1119,6 +1121,48 @@ color:var(--text-color)
   border-color: var(--main-color);
   box-shadow: 0 0 10px var(--main-color);
 }
+
+
+/* override only for the 'Others' icon */
+.skill-group:hover .others-icon i {
+  border-color: white !important;
+  box-shadow: 0 0 10px white !important;
+  color: white !important; /* optional: make icon itself white */
+}
+
+
+.skills-content {
+  display: none;
+}
+.skills-content.active {
+  display: block;
+}
+
+.skills-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.skills-tab {
+  background: transparent;
+  border: 2px solid var(--main-color);
+  color: var(--main-color);
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.skills-tab.active,
+.skills-tab:hover {
+  background: var(--main-color);
+  color: var(--bg-color);
+}
+
 
 /* ✅ Slight grow effect (no shaking) */
 .skill-icon:hover i,
