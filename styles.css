@@ -962,7 +962,7 @@ color:var(--text-color)
 .services {
   min-height: 100vh;
   display: flex;
-  flex-direction: column;
+  flex-direction: column; 
   justify-content:flex-start;
   align-items: center;
   padding: 1rem 1.5rem 0rem 1.5rem;
@@ -3706,6 +3706,7 @@ padding: 0rem;
 
 .services{
   padding: 1rem;
+  min-height: 50vh;
 }
  .heading {
     font-size: 2rem;
