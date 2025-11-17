@@ -968,6 +968,46 @@ color:var(--text-color)
   padding: 1rem 1.5rem 0rem 1.5rem;
 }
 
+.no-experience-box {
+  text-align: center;
+  padding: 15px;
+  max-width: 650px;
+  margin: 0 auto;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.no-experience-box p {
+  color: #ccc;
+  font-size: 1.5rem; /* bigger text */
+  line-height: 1.7;
+  margin-bottom: 18px;
+}
+
+.no-experience-box .highlight {
+  color: #00ff47; /* green highlight */
+  font-weight: 600;
+  font-size: 1.5rem; /* slightly bigger */
+}
+
+.hire-me-btn {
+  display: inline-block;
+  margin-top: 18px;
+  margin-bottom: 10px;
+  padding: 12px 28px;
+  background: #00ff47; /* green button */
+  color: #000; /* black text looks better on green */
+  font-size: 1.5rem; /* bigger button text */
+  font-weight: 600;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.hire-me-btn:hover {
+  background: #00d63c; /* slightly darker green for hover */
+  transform: scale(1.08);
+}
+
 
 .services h2 {
   font-size: 2.25rem; /* was 3rem */
@@ -3407,6 +3447,10 @@ padding: 0 2.5rem;
   .navbar a {
     margin: 0 1rem; 
   } */
+
+  .no-experience-box {
+  padding: 5px;
+}
 
 
     #header-theme-toggle {
