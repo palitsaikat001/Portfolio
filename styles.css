@@ -980,7 +980,7 @@ color:var(--text-color)
   color: #ccc;
   font-size: 1.5rem; /* bigger text */
   line-height: 1.7;
-  margin-bottom: 18px;
+  margin-bottom: 10px;
 }
 
 .no-experience-box .highlight {
@@ -3903,6 +3903,11 @@ margin-left: 0.95rem;
 
 #services1 .services-container.dual {
   gap: 2rem;
+}
+
+.hire-me-btn {
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 
