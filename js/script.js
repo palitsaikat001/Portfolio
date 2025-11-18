@@ -98,7 +98,7 @@ ScrollReveal({
   delay: 200,
 });
 ScrollReveal().reveal(".home-content, .heading, .contact-info", { origin: "top" });
-ScrollReveal().reveal(".services-container, .portfolio-box, .contact form", { origin: "bottom" });
+ScrollReveal().reveal(".skills-reveal, .skills-reveal1, .portfolio-box, .contact form", { origin: "bottom" });
 ScrollReveal().reveal(".home-img", {
   origin: "none",     // Removes directional animation
   distance: "0px",    // No sliding movement
@@ -110,6 +110,25 @@ ScrollReveal().reveal(".home-img", {
 ScrollReveal().reveal(".home-content h1, .about-img", { origin: "left" });
 ScrollReveal().reveal(".home-content p, .about-content", { origin: "right" });
 
+const expTab = document.querySelector('[data-target="experience"]');
+const btechTab = document.querySelector('[data-target="btech"]');
+const expSection = document.querySelector('.skills-reveal1');
+
+// 1️⃣ When EXPERIENCE button is clicked
+expTab.addEventListener("click", () => {
+  if (window.innerWidth <= 450) {
+    // Disable ScrollReveal for small screens
+    expSection.classList.add("no-reveal");
+  } else {
+    // Enable ScrollReveal for bigger screens
+    ScrollReveal().reveal(".skills-reveal1", { origin: "bottom" });
+  }
+});
+
+// 2️⃣ When BTECH SKILLS tab is clicked → remove no-reveal so reveal works again
+btechTab.addEventListener("click", () => {
+  expSection.classList.remove("no-reveal");
+});
 
 
 // Show overlay when clicking project link

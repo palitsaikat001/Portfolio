@@ -1524,6 +1524,12 @@ box-sizing: border-box;
 }
 
 
+.no-reveal {
+  opacity: 1 !important;
+  transform: none !important;
+  visibility: visible !important;
+  transition: none !important;
+}
 
 
 
