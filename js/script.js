@@ -437,102 +437,143 @@ toggleBtns.forEach(btn => {
 updateIcons();
 
 
+// -------------------------------
+// 1) Detect if user already submitted
+// -------------------------------
 
+// ❌ Old permanent memory (removed)
+// let alreadySubmitted = localStorage.getItem("mailSubmitted") === "true";
+
+// ✔ New session-only memory (resets on reload)
+let alreadySubmitted = false; 
+
+
+
+// -------------------------------
+// 2) Thank You Page Function
+// -------------------------------
+function showThankYouPage() {
+
+  const old = document.getElementById("thankYouFull");
+  if (old) old.remove();
+
+  document.body.insertAdjacentHTML("beforeend", `
+    <div id="thankYouFull" style="
+      position: fixed; top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      background: #0a0a0a; color: #00ff48;
+      display: flex; justify-content: center; align-items: center;
+      text-align: center; font-family: Poppins, sans-serif;
+      z-index: 9999;">
+      <div>
+        <h1 style="font-size:3rem;">✅ Message Sent!</h1>
+        <p style="font-size:1.25rem;opacity:0.9;margin-bottom:2rem;">
+          Thank you for reaching out.. I’ll get back to you soon!
+        </p>
+        <a id="returnToPortfolio" style="
+          display:inline-block;background:#00ff48;color:#000;
+          padding:0.75rem 2rem;font-weight:600;border-radius:0.6rem;
+          cursor:pointer;">⬅ Go Back</a>
+      </div>
+    </div>
+  `);
+
+  document.getElementById("returnToPortfolio").addEventListener("click", () => {
+    document.getElementById("thankYouFull").remove();
+  });
+}
+
+
+
+// -------------------------------
+// 3) Popup Form Elements
+// -------------------------------
 const contactBtn = document.getElementById("contactBtn");
-  const popupForm = document.getElementById("popupForm");
-  const popupOverlay = document.getElementById("popupOverlay");
-  const closePopup = document.getElementById("closePopup");
-  const mainSection = document.querySelector(".home") || document.querySelector("main");
+const popupForm = document.getElementById("popupForm");
+const popupOverlay = document.getElementById("popupOverlay");
+const closePopup = document.getElementById("closePopup");
+const mainSection = document.querySelector(".home") || document.querySelector("main");
 
 
-  // Open popup
-  contactBtn.addEventListener("click", () => {
-    popupForm.classList.add("active");
-    popupOverlay.style.display = "block";
-    mainSection.classList.add("main-blur");
-    if (menuIcon) menuIcon.classList.add("disabled");
-  });
 
-  // Close popup when X is clicked
-  closePopup.addEventListener("click", () => {
-    popupForm.classList.remove("active");
-    popupOverlay.style.display = "none";
-     if (menuIcon) menuIcon.classList.remove("disabled");
-  });
+// -------------------------------
+// 4) Contact Button Click
+// -------------------------------
+contactBtn.addEventListener("click", () => {
 
-  // Close popup when clicking outside
-  popupOverlay.addEventListener("click", () => {
-    popupForm.classList.remove("active");
-    popupOverlay.style.display = "none";
-     if (menuIcon) menuIcon.classList.remove("disabled");
-  });
+  // ❌ Old behavior (permanent memory)
+  // if (alreadySubmitted) {
+  //   showThankYouPage();
+  //   return;
+  // }
 
+  // ✔ New behavior: show thank-you ONLY if submitted in same session
+  if (alreadySubmitted) {
+    showThankYouPage();
+    return;
+  }
 
-  document.addEventListener("DOMContentLoaded", () => {
-  const boxes = document.querySelectorAll(".portfolio-box");
-  const aboutContent = document.querySelector(".about-content1.glass1");
-  const container = document.querySelector(".portfolio-container");
-
-  boxes.forEach(box => {
-    const detailsBtn = box.querySelector(".details-btn");
-    const closeBtn = box.querySelector(".close-details");
-
-    if (detailsBtn) {
-      detailsBtn.addEventListener("click", e => {
-        e.stopPropagation();
-        
-
-        // Make background transparent
-        // aboutContent.classList.add("transparent");
-
-        // Hide other projects
-        container.classList.add("hide-others");
-
-        // Show only this one
-        box.classList.add("active");
-      });
-    }
-
-    if (closeBtn) {
-      closeBtn.addEventListener("click", e => {
-        e.stopPropagation();
-
-        // Remove transparency and restore others
-        aboutContent.classList.remove("transparent");
-        container.classList.remove("hide-others");
-        box.classList.remove("active");
-      });
-    }
-  });
+  popupForm.classList.add("active");
+  popupOverlay.style.display = "block";
+  mainSection.classList.add("main-blur");
+  if (typeof menuIcon !== "undefined") menuIcon.classList.add("disabled");
 });
 
 
 
-// const messageBox = document.getElementById("message");
-
-// const defaultMessage = `Hello,
-// I have reviewed your portfolio and was impressed with your work.
-// I would like to discuss further opportunities with you now...
-
-// Best regards,
-// [Your Name]`;
-
-// // On focus → if empty, show default text
-// messageBox.addEventListener("focus", () => {
-//   if (messageBox.value.trim() === "") {
-//     messageBox.value = defaultMessage;
-//   }
-// });
-
-// // On blur → if user didn't change anything, remove text and show placeholder
-// messageBox.addEventListener("blur", () => {
-//   if (messageBox.value.trim() === defaultMessage.trim()) {
-//     messageBox.value = ""; // Clears it so placeholder shows
-//   }
-// });
+// -------------------------------
+// 5) Close Popup (X)
+// -------------------------------
+closePopup.addEventListener("click", () => {
+  popupForm.classList.remove("active");
+  popupOverlay.style.display = "none";
+  if (typeof menuIcon !== "undefined") menuIcon.classList.remove("disabled");
+});
 
 
-// Select ALL textareas with id="message"
+
+// -------------------------------
+// 6) Close Popup (click outside)
+// -------------------------------
+popupOverlay.addEventListener("click", () => {
+  popupForm.classList.remove("active");
+  popupOverlay.style.display = "none";
+  if (typeof menuIcon !== "undefined") menuIcon.classList.remove("disabled");
+});
+
+
+
+// -------------------------------
+// 7) FORM SUBMIT — AJAX (NO REDIRECT)
+// -------------------------------
+document.getElementById("xxxxx").addEventListener("submit", async function(e) {
+  e.preventDefault();
+
+  const formData = new FormData(this);
+
+  await fetch(this.action, {
+    method: "POST",
+    body: formData
+  });
+
+  // ❌ Old permanent save (removed)
+  // localStorage.setItem("mailSubmitted", "true");
+  // alreadySubmitted = true;
+
+  // ✔ New session-only save
+  alreadySubmitted = true;
+
+  popupForm.classList.remove("active");
+  popupOverlay.style.display = "none";
+
+  showThankYouPage();
+});
+
+
+
+// -------------------------------
+// 8) Default message text
+// -------------------------------
 const messageBoxes = document.querySelectorAll("#message");
 
 const defaultMessage = `Hello,
@@ -542,18 +583,13 @@ I would like to discuss further opportunities with you now...
 Best regards,
 [Your Name]`;
 
-// Apply logic to each textarea separately
 messageBoxes.forEach(messageBox => {
-
-  // On focus → if empty, show default text
   messageBox.addEventListener("focus", () => {
     if (messageBox.value.trim() === "") {
       messageBox.value = defaultMessage;
     }
   });
-
 });
-
 
 
 const countryEl = document.getElementById('country');
@@ -619,3 +655,4 @@ setInterval(() => {
       target.classList.add("active");
     });
   });
+
