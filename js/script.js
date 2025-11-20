@@ -114,21 +114,22 @@ const expTab = document.querySelector('[data-target="experience"]');
 const btechTab = document.querySelector('[data-target="btech"]');
 const expSection = document.querySelector('.skills-reveal1');
 
-// 1️⃣ When EXPERIENCE button is clicked
-expTab.addEventListener("click", () => {
-  if (window.innerWidth <= 450) {
-    // Disable ScrollReveal for small screens
-    expSection.classList.add("no-reveal");
-  } else {
-    // Enable ScrollReveal for bigger screens
-    ScrollReveal().reveal(".skills-reveal1", { origin: "bottom" });
-  }
-});
+if (expTab && btechTab && expSection) {
+  // When EXPERIENCE button is clicked
+  expTab.addEventListener("click", () => {
+    if (window.innerWidth <= 450) {
+      // On small screens: kill ScrollReveal effect visually
+      expSection.classList.add("no-reveal");
+    }
+  });
 
-// 2️⃣ When BTECH SKILLS tab is clicked → remove no-reveal so reveal works again
-btechTab.addEventListener("click", () => {
-  expSection.classList.remove("no-reveal");
-});
+  // When BTECH SKILLS button is clicked
+  btechTab.addEventListener("click", () => {
+    if (window.innerWidth <= 450) {
+      expSection.classList.remove("no-reveal");
+    }
+  });
+}
 
 
 // Show overlay when clicking project link
