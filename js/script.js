@@ -455,6 +455,9 @@ let alreadySubmitted = false;
 // -------------------------------
 function showThankYouPage() {
 
+  if (typeof menuIcon !== "undefined") menuIcon.classList.remove("disabled");
+
+
   const old = document.getElementById("thankYouFull");
   if (old) old.remove();
 
