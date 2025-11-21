@@ -455,6 +455,11 @@ let alreadySubmitted = false;
 // -------------------------------
 function showThankYouPage() {
 
+
+    // ⭐ Stop ALL scrolling (html + body)
+  document.documentElement.style.overflow = "hidden";
+  document.body.style.overflow = "hidden";
+
   if (typeof menuIcon !== "undefined") menuIcon.classList.remove("disabled");
 
 
@@ -483,6 +488,10 @@ function showThankYouPage() {
   `);
 
   document.getElementById("returnToPortfolio").addEventListener("click", () => {
+
+    // ⭐ Restore scrolling
+    document.documentElement.style.overflow = "auto";
+    document.body.style.overflow = "auto";
     document.getElementById("thankYouFull").remove();
   });
 }
