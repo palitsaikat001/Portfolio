@@ -459,7 +459,7 @@ function showThankYouPage() {
 
 
   const old = document.getElementById("thankYouFull");
-  if (old) old.remove();
+  if (old) old.remove();   
 
   document.body.insertAdjacentHTML("beforeend", `
     <div id="thankYouFull" style="
