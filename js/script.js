@@ -466,26 +466,44 @@ function showThankYouPage() {
   const old = document.getElementById("thankYouFull");
   if (old) old.remove();   
 
-  document.body.insertAdjacentHTML("beforeend", `
-    <div id="thankYouFull" style="
-      position: fixed; top: 0; left: 0;
-      width: 100vw; height: 100vh;
-      background: #0a0a0a; color: #00ff48;
-      display: flex; justify-content: center; align-items: center;
-      text-align: center; font-family: Poppins, sans-serif;
-      z-index: 9999;">
-      <div>
-        <h1 style="font-size:3rem;">✅ Message Sent!</h1>
-        <p style="font-size:1.25rem;opacity:0.9;margin-bottom:2rem;">
-          Thank you for reaching out.. I’ll get back to you soon!
-        </p>
-        <a id="returnToPortfolio" style="
-          display:inline-block;background:#00ff48;color:#000;
-          padding:0.75rem 2rem;font-weight:600;border-radius:0.6rem;
-          cursor:pointer;">⬅ Go Back</a>
-      </div>
+document.body.insertAdjacentHTML("beforeend", `
+  <style>
+    @media (max-width: 450px) {
+      #thankYouFull h1 {
+        font-size: 2.5rem !important;
+      }
+      #thankYouFull p {
+        font-size: 1.25rem !important;
+      }
+      #returnToPortfolio {
+        font-size: 1.05rem !important;
+        padding: 0.6rem 1.5rem !important;
+      }
+    }
+  </style>
+
+  <div id="thankYouFull" style="
+    position: fixed; top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    background: #0a0a0a; color: #00ff48;
+    display: flex; justify-content: center; align-items: center;
+    text-align: center; font-family: Poppins, sans-serif;
+    z-index: 9999;">
+    <div>
+      <h1 style="font-size:4.5rem;">✅ Message Sent!</h1>
+      <p style="font-size:2.25rem;opacity:0.9;margin-bottom:2rem;">
+        Thank you for reaching out.. I’ll get back to you soon!
+      </p>
+
+      <a id="returnToPortfolio" style="
+        display:inline-block;background:#00ff48;color:#000;
+        padding:1rem 3rem;font-size:1.5rem;font-weight:700;
+        border-radius:0.8rem;cursor:pointer;
+      ">⬅ Go Back</a>
+
     </div>
-  `);
+  </div>
+`);
 
   document.getElementById("returnToPortfolio").addEventListener("click", () => {
 
@@ -563,22 +581,37 @@ document.getElementById("xxxxx").addEventListener("submit", async function(e) {
   e.preventDefault();
 
   const formData = new FormData(this);
+  alreadySubmitted = true;
 
+  // BUTTON elements
+  const submitBtn = document.getElementById("submitBtn1");   // popup submit button ID
+  const btnText = submitBtn.querySelector(".btn-text");
+  const spinner = submitBtn.querySelector(".spinner");
+
+  // ⭐ Show spinner only
+  submitBtn.classList.add("loading");
+  btnText.style.visibility = "hidden";   // hide text but keep width
+  spinner.style.display = "block";       // center spinner
+
+  // Send the form in background
   await fetch(this.action, {
     method: "POST",
     body: formData
   });
 
-  // ❌ Old permanent save (removed)
-  // localStorage.setItem("mailSubmitted", "true");
-  // alreadySubmitted = true;
+  // Reset form
+  this.reset();
 
-  // ✔ New session-only save
-  alreadySubmitted = true;
+  // Restore button
+  submitBtn.classList.remove("loading");
+  btnText.style.visibility = "visible";
+  spinner.style.display = "none";
 
+  // Close popup UI
   popupForm.classList.remove("active");
   popupOverlay.style.display = "none";
 
+  // Show thank you page
   showThankYouPage();
 });
 
@@ -591,7 +624,7 @@ const messageBoxes = document.querySelectorAll("#message");
 
 const defaultMessage = `Hello,
 I have reviewed your portfolio and was impressed with your work.
-I would like to discuss further opportunities with you now...
+I'd like to discuss further opportunities with you now..
 
 Best regards,
 [Your Name]`;
@@ -603,6 +636,51 @@ messageBoxes.forEach(messageBox => {
     }
   });
 });
+
+
+
+document.getElementById("contactForm2").addEventListener("submit", async function(e) {
+  e.preventDefault();
+
+  const formData = new FormData(this);
+  alreadySubmitted = true;
+
+  const submitBtn = document.getElementById("submitBtn2");
+  const btnText = submitBtn.querySelector(".btn-text");
+  const spinner = submitBtn.querySelector(".spinner");
+
+  // Show spinner only
+  submitBtn.classList.add("loading");
+  btnText.style.visibility = "hidden";   // hide text without resizing
+  spinner.style.display = "block";       // show spinner centered
+
+  await fetch(this.action, {
+    method: "POST",
+    body: formData
+  });
+
+  this.reset();
+
+  // restore button
+  submitBtn.classList.remove("loading");
+  btnText.style.visibility = "visible";
+  spinner.style.display = "none";
+
+  showThankYouPage();
+});
+
+
+// -------------------------------
+// Default message for second contact form textarea
+// -------------------------------
+const messageBox2 = document.getElementById("message2");
+
+messageBox2.addEventListener("focus", () => {
+  if (messageBox2.value.trim() === "") {
+    messageBox2.value = defaultMessage;
+  }
+});
+
 
 
 const countryEl = document.getElementById('country');

@@ -964,26 +964,43 @@ let’s connect!
         </div>
     
         <!-- Right Side: Contact Form -->
-        <div class="contact-form-wrapper">
-          <form action="xxxxx@gmail.com" method="post" enctype="text/plain">
-            <div class="input-box">
-              <input type="text" placeholder="Full Name" />
-              <input type="email" placeholder="Email Address" />
-            </div>
-            <div class="input-box">
-              <input type="number" placeholder="Mobile Number" />
-              <input type="text" placeholder="Email Subject" />
-            </div>
-<textarea id="message" cols="30" rows="10" placeholder="Hello,
+   <!-- Right Side: Contact Form -->
+<div class="contact-form-wrapper">
+  <form id="contactForm2" action="https://formsubmit.co/mrxworld001@gmail.com" method="POST">
+      
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_template" value="table">
+
+      <div class="input-box">
+        <input type="text" name="Full Name" placeholder="Full Name" required />
+        <input type="email" name="Email Address" placeholder="Email Address" required />
+      </div>
+
+      <div class="input-box">
+        <input type="number" name="Mobile Number" placeholder="Mobile Number" />
+        <input type="text" name="Email Subject" placeholder="Email Subject" />
+      </div>
+
+      <textarea 
+        id="message2" 
+        name="Message"
+        cols="30" 
+        rows="10" 
+        placeholder="Hello,
 I have reviewed your portfolio and was impressed with your work.
-I would like to discuss further opportunities with you now...
+I'd like to discuss further opportunities with you now..
 
 Best regards,
 [Your Name]"></textarea>
 
-            <input type="submit" value="Send Message" class="btn" />
-          </form>
-        </div>
+      <button type="submit" class="btn" id="submitBtn2">
+        <h3 class="btn-text">Send Message</h3>
+        <h3 class="spinner" style="display:none;"></h3>
+      </button>
+
+  </form>
+</div>
+
       </div>
     </section>
     
@@ -1046,12 +1063,16 @@ Best regards,
 
   <textarea id="message" name="Message" cols="30" rows="10" placeholder="Hello,
 I have reviewed your portfolio and was impressed with your work.
-I would like to discuss further opportunities with you now...
+I'd like to discuss further opportunities with you now...
 
 Best regards,
 [Your Name]"></textarea>
 
-  <input type="submit" value="Send Message" class="btn" />
+<button type="submit" class="btn" id="submitBtn1">
+  <h3 class="btn-text">Send Message</h3>
+  <h3 class="spinner" style="display:none;"></h3>
+</button>
+
 </form>
 
   </div>
