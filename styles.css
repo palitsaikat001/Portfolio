@@ -4279,24 +4279,45 @@ padding-bottom: 0rem;
 }
 
 .popup-buttons .confirm {
-  background: linear-gradient(90deg, #00ff47, #00cc66);
-  color: black;
+  background: var(--main-color);     /* solid base green */
+  color: var(--bg-color);            /* text color (usually black or white based on theme) */
   font-weight: 600;
+  padding: 8px 20px;
+  border-radius: 8px;
+  border: 2px solid var(--main-color);
+  transition: 0.3s ease;
+  cursor: pointer;
+  box-shadow: none;
+  outline: none;
 }
+
+/* Hover glow */
+.popup-buttons .confirm:hover {
+  box-shadow: 0 0 12px var(--main-color), 0 0 25px var(--main-color);
+  transform: scale(1.03);
+}
+
 
 .popup-buttons .cancel {
-  background: rgba(255, 255, 255, 0.15);
+  background: #111;                     /* solid clean base */
   color: white;
-  border: 1px solid rgba(255, 255, 255, 0.25);
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  padding: 8px 20px;
+  border-radius: 8px;
+  transition: 0.3s ease;
+  cursor: pointer;
+  box-shadow: none;                      /* remove default shadow */
+  outline: none;                         /* remove browser default */
 }
 
-.popup-buttons .confirm:hover {
-  background: linear-gradient(90deg, #00ff47, #00aa55);
-}
-
+/* Hover glow */
 .popup-buttons .cancel:hover {
-  background: rgba(255, 255, 255, 0.25);
+  border-color: #fff;
+  box-shadow: 0 0 10px #fff, 0 0 18px #fff;  /* white glow */
+  transform: scale(1.03);
 }
+
+
 
 /* Animations */
 @keyframes spin {
