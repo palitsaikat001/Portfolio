@@ -624,7 +624,7 @@ display: none;
   position: relative;
   top: 6.5px; /* you can keep it for moving text upward */
   /* REMOVE scroll-margin-top from here */
-  margin-top: 2.75rem;
+  margin-top: 2.5rem;
 }
 
 
@@ -1931,11 +1931,34 @@ width: fit-content;
   max-height: 25px;
 }
 
+/* Normal behavior: active & hover -> green */
 .menu-btn.active,
 .menu-btn:hover {
   background: var(--main-color);
   color: var(--bg-color);
 }
+
+/* === WHEN A PROJECT IS OPEN === */
+
+/* Non-active menus should look disabled */
+body.project-open .menu-btn:not(.active) {
+  cursor: not-allowed;
+}
+
+/* Hover on other menus -> red */
+body.project-open .menu-btn:not(.active):hover {
+  background: red;
+  color: #fff;
+}
+
+/* Keep active menu normal even in project-open state */
+body.project-open .menu-btn.active,
+body.project-open .menu-btn.active:hover {
+  background: var(--main-color);
+  color: var(--bg-color);
+  cursor: pointer;
+}
+
 
 
 #portfolio .check-desktop1 {

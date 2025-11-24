@@ -270,32 +270,143 @@ if (aboutContent.classList.contains('expanded')) {
 
 
 
-const buttons = document.querySelectorAll(".menu-btn");
-const boxes = document.querySelectorAll(".portfolio-box");
+// const buttons = document.querySelectorAll(".menu-btn");
+// const boxes = document.querySelectorAll(".portfolio-box");
 
-buttons.forEach(btn => {
-  btn.addEventListener("click", () => {
+
+// buttons.forEach(btn => {
+//   btn.addEventListener("click", () => {
+
+
+    // Do nothing if a project is active (bigger mode open)
+// if (document.querySelector(".portfolio-box.active")) return;
+
+
+
     // Active button highlight
-    buttons.forEach(b => b.classList.remove("active"));
-    btn.classList.add("active");
+//     buttons.forEach(b => b.classList.remove("active"));
+//     btn.classList.add("active");
 
-    const category = btn.dataset.category;
+//     const category = btn.dataset.category;
 
-    boxes.forEach(box => {
-      if (category === "all" || box.classList.contains(category)) {
-        box.classList.remove("hide");
-      } else {
-        box.classList.add("hide");
-      }
+//     boxes.forEach(box => {
+//       if (category === "all" || box.classList.contains(category)) {
+//         box.classList.remove("hide");
+//       } else {
+//         box.classList.add("hide");
+//       }
+//     });
+//   });
+// });
+
+
+// //portfolio project
+// document.addEventListener("DOMContentLoaded", () => {
+//   const boxes = document.querySelectorAll(".portfolio-box");
+//   const aboutContent = document.querySelector(".about-content1.glass1");
+//   const container = document.querySelector(".portfolio-container");
+
+//   boxes.forEach(box => {
+//     const detailsBtn = box.querySelector(".details-btn");
+//     const closeBtn = box.querySelector(".close-details");
+
+//     if (detailsBtn) {
+//       detailsBtn.addEventListener("click", e => {
+//         e.stopPropagation();
+
+
+        // Hide other projects
+        // container.classList.add("hide-others");
+
+//         // Show only this one
+//         box.classList.add("active");
+//       });
+
+      
+//     }
+
+//     if (closeBtn) {
+//       closeBtn.addEventListener("click", e => {
+//         e.stopPropagation();
+
+//         container.classList.remove("hide-others");
+//         box.classList.remove("active");
+//       });
+//     }
+//   });
+// });
+
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  const buttons = document.querySelectorAll(".menu-btn");
+  const boxes = document.querySelectorAll(".portfolio-box");
+  const container = document.querySelector(".portfolio-container");
+  const body = document.body;
+
+  function isProjectOpen() {
+    return !!document.querySelector(".portfolio-box.active");
+  }
+
+  function updateProjectState() {
+    if (isProjectOpen()) {
+      body.classList.add("project-open");
+    } else {
+      body.classList.remove("project-open");
+    }
+  }
+
+  // Menu buttons
+  buttons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      // ❌ Don't change menu / filter while a project is open
+      if (isProjectOpen()) return;
+
+      // Active button highlight
+      buttons.forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+
+      const category = btn.dataset.category;
+
+      boxes.forEach(box => {
+        const shouldShow = category === "all" || box.classList.contains(category);
+        box.classList.toggle("hide", !shouldShow);
+      });
     });
   });
+
+  // Portfolio project open / close
+  boxes.forEach(box => {
+    const detailsBtn = box.querySelector(".details-btn");
+    const closeBtn = box.querySelector(".close-details");
+
+    if (detailsBtn) {
+      detailsBtn.addEventListener("click", e => {
+        e.stopPropagation();
+
+        // Show only this project
+        container.classList.add("hide-others");
+        box.classList.add("active");
+
+        updateProjectState(); // ⭐ sync body.project-open
+      });
+    }
+
+    if (closeBtn) {
+      closeBtn.addEventListener("click", e => {
+        e.stopPropagation();
+
+        container.classList.remove("hide-others");
+        box.classList.remove("active");
+
+        updateProjectState(); // ⭐ sync body.project-open
+      });
+    }
+  });
+
+  // Initial sync (in case some box is marked active in HTML)
+  updateProjectState();
 });
-
-
-
-
-
-
 
 
 
