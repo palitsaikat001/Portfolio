@@ -408,35 +408,93 @@ document.addEventListener("DOMContentLoaded", () => {
   updateProjectState();
 });
 
+// Select both download buttons (second one is optional)
+const downloadButtons = document.querySelectorAll("#downloadBtn, #download-cv");
 
+// Popup elements
+const overlay = document.getElementById("download-overlay");
+const confirmBtn = document.getElementById("confirmDownload");
+const cancelBtn = document.getElementById("cancelDownload");
 
+// Only for this page load
+let downloadedOnce = false;
 
- const downloadBtn = document.getElementById("downloadBtn");
-  const overlay = document.getElementById("download-overlay");
-  const confirmBtn = document.getElementById("confirmDownload");
-  const cancelBtn = document.getElementById("cancelDownload");
-
-  downloadBtn.addEventListener("click", (e) => {
-    e.preventDefault(); // Stop instant download
-    overlay.style.display = "flex"; // Show popup
+// Disable buttons visually and functionally
+function disableButtons() {
+  downloadButtons.forEach(btn => {
+    btn.textContent = "CV Downloaded";
+    btn.classList.add("disabled");        // for styles like opacity, font-size
+    btn.style.cursor = "not-allowed";     // 🔥 inline style = highest priority
   });
+}
 
-  confirmBtn.addEventListener("click", () => {
-    // Hide popup
-    overlay.style.display = "none";
+// Handle clicks on download buttons
+downloadButtons.forEach(btn => {
+  if (!btn) return; // in case one of the IDs doesn't exist
 
-    // Trigger download
-    const link = document.createElement("a");
-    link.href = downloadBtn.getAttribute("href");
-    link.download = "";
-    document.body.appendChild(link);
-    link.click();
-    link.remove();
+  btn.addEventListener("click", (e) => {
+    e.preventDefault();
+
+    // If already downloaded, do nothing (but cursor still shows not-allowed)
+    if (downloadedOnce) return;
+
+    // Show popup
+    overlay.style.display = "flex";
+
+    // Store the href for this click
+    overlay.dataset.href = btn.getAttribute("href");
   });
+});
 
-  cancelBtn.addEventListener("click", () => {
-    overlay.style.display = "none"; // Close popup
-  });
+// Confirm download
+confirmBtn.addEventListener("click", () => {
+  overlay.style.display = "none";
+
+  const link = document.createElement("a");
+  link.href = overlay.dataset.href;
+  link.download = "";
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+
+  // Mark as downloaded & disable buttons
+  downloadedOnce = true;
+  disableButtons();
+});
+
+// Cancel popup
+cancelBtn.addEventListener("click", () => {
+  overlay.style.display = "none";
+});
+
+
+
+//  const downloadBtn = document.getElementById("downloadBtn");
+//   const overlay = document.getElementById("download-overlay");
+//   const confirmBtn = document.getElementById("confirmDownload");
+//   const cancelBtn = document.getElementById("cancelDownload");
+
+//   downloadBtn.addEventListener("click", (e) => {
+//     e.preventDefault();
+//     overlay.style.display = "flex";
+//   });
+
+//   confirmBtn.addEventListener("click", () => {
+ 
+//     overlay.style.display = "none";
+
+  
+//     const link = document.createElement("a");
+//     link.href = downloadBtn.getAttribute("href");
+//     link.download = "";
+//     document.body.appendChild(link);
+//     link.click();
+//     link.remove();
+//   });
+
+//   cancelBtn.addEventListener("click", () => {
+//     overlay.style.display = "none"; 
+//   });
 
 
 // Get both toggle buttons

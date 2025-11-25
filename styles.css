@@ -2886,6 +2886,12 @@ body.project-open .menu-btn.active:hover {
     margin: 0 auto;
   }
 
+
+  .disabled {
+  opacity: 0.5;
+  font-size: 0.9rem; /* smaller font after download */
+}
+
   
 
   .contact-info h2 {
@@ -4293,7 +4299,7 @@ padding-bottom: 0rem;
 
 /* Hover glow */
 .popup-buttons .confirm:hover {
-  box-shadow: 0 0 12px var(--main-color), 0 0 25px var(--main-color);
+  box-shadow: 0 0 10px var(--main-color), 0 0 15px var(--main-color);
   transform: scale(1.03);
 }
 
