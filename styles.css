@@ -108,6 +108,9 @@ section {
   margin-left: 1rem;
 }
 
+.name-mobile {
+  display: none;
+}
 
 .home-header1 {
   position: absolute;     /* stays at top of home section */
@@ -3544,6 +3547,12 @@ padding: 0 2.5rem;
     margin: 0 1rem; 
   } */
 
+  .name-desktop {
+    display: none;
+  }
+  .name-mobile {
+    display: inline;
+  }
 
   .popup-form form textarea {
     padding: 1.35rem 1rem 1.35rem 1rem;
