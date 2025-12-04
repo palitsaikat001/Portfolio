@@ -409,7 +409,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // Select both download buttons (second one is optional)
-const downloadButtons = document.querySelectorAll("#downloadBtn, #download-cv");
+const downloadButtons = document.querySelectorAll("#downloadBtn, #download-cv, #download-cvBtn");
 
 // Popup elements
 const overlay = document.getElementById("download-overlay");
@@ -695,6 +695,20 @@ const closePopup = document.getElementById("closePopup");
 const mainSection = document.querySelector(".home") || document.querySelector("main");
 
 
+
+document.querySelectorAll(".contact-btn1").forEach(btn => {
+  btn.addEventListener("click", () => {
+    if (alreadySubmitted) {
+      showThankYouPage();
+      return;
+    }
+
+    popupForm.classList.add("active");
+    popupOverlay.style.display = "block";
+    mainSection.classList.add("main-blur");
+    if (typeof menuIcon !== "undefined") menuIcon.classList.add("disabled");
+  });
+});
 
 // -------------------------------
 // 4) Contact Button Click
