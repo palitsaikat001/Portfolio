@@ -627,7 +627,7 @@ display: none;
   position: relative;
   top: 6.5px; /* you can keep it for moving text upward */
   /* REMOVE scroll-margin-top from here */
-  margin-top: 2.5rem;
+  margin-top: 2rem;
 }
 
 
@@ -740,6 +740,43 @@ span {
   font-size: 2rem;
 }
 
+header {
+  position: relative;
+}
+
+header .arrow1 {
+font-size: 2.2rem;
+  position: absolute;
+  bottom: 10px;        /* adjust vertical placement */         /* adjust horizontal placement */
+  background: var(--second-bg-color);
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #000;
+  cursor: pointer;
+  user-select: none;
+
+  /* smooth rotation and color transitions */
+  transition: transform 300ms ease, background 200ms ease, color 200ms ease, box-shadow 200ms ease;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.12);
+  line-height: 1;
+  z-index: 40;
+
+    transform: rotate(90deg);
+}
+
+
+header .arrow1:hover {
+  color: #00ff00; /* green arrow */
+}
+
+
+header .arrow1.up {
+  transform: rotate(-90deg);
+}
 
 .btn-wrapper {
 margin-left: 2rem;
@@ -3281,7 +3318,7 @@ padding: 0 2.5rem;
 
   .about-content p {
     font-size: 1.3rem;
-    text-align: justify;
+    text-align: center;
   }
 
   .glass {

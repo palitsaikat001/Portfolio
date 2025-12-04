@@ -930,3 +930,200 @@ setInterval(() => {
     });
   });
 
+
+
+
+
+
+(function(){
+  const arrow = document.querySelector('header .arrow1');
+  const navLinks = Array.from(document.querySelectorAll('header .navbar a'));
+
+  // Build sections list from nav href order (only anchors with #id)
+  const sections = navLinks
+    .map(a => {
+      const id = a.getAttribute('href');
+      return (id && id.startsWith('#')) ? document.querySelector(id) : null;
+    })
+    .filter(Boolean);
+
+  if (!arrow || sections.length === 0) {
+    console.warn('arrow1 or sections not found.');
+    return;
+  }
+
+  let currentIndex = 0;
+  let lastWheelTime = 0;
+  let lastTouchY = null;
+
+  // Strict IntersectionObserver: section must be mostly visible / near top
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const idx = sections.indexOf(entry.target);
+        if (idx !== -1) {
+          currentIndex = idx;
+          // At extremes enforce arrow face
+          if (currentIndex === sections.length - 1) {
+            arrow.classList.add('up');
+          } else if (currentIndex === 0) {
+            arrow.classList.remove('up');
+          }
+          highlightNav(currentIndex);
+        }
+      }
+    });
+  }, {
+    root: null,
+    // wait until the section is much closer to top before marking it visible
+    rootMargin: '0px 0px -90% 0px',
+    threshold: 0.25
+  });
+
+  sections.forEach(s => io.observe(s));
+
+  function highlightNav(idx){
+    navLinks.forEach(a => a.classList.remove('active'));
+    const link = navLinks[idx];
+    if (link) link.classList.add('active');
+  }
+
+  function scrollToIndex(idx){
+    if (idx < 0) idx = 0;
+    if (idx > sections.length - 1) idx = sections.length - 1;
+    sections[idx].scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  // Click: step one-by-one up or down depending on arrow state
+  arrow.addEventListener('click', () => {
+    const isUp = arrow.classList.contains('up');
+    if (isUp) {
+      // step up one section (if possible)
+      if (currentIndex > 0) {
+        scrollToIndex(currentIndex - 1);
+      }
+    } else {
+      // step down one section (if possible)
+      if (currentIndex < sections.length - 1) {
+        scrollToIndex(currentIndex + 1);
+      } else {
+        // already last: ensure arrow shows up
+        arrow.classList.add('up');
+      }
+    }
+  });
+
+  // Immediate mood-change handlers (wheel + touch)
+  // small thresholds to react quickly to small gestures
+  function handleWheel(e){
+    const now = Date.now();
+    if (now - lastWheelTime < 60) return; // tiny throttle for responsiveness
+    lastWheelTime = now;
+
+    const delta = e.deltaY;
+    if (Math.abs(delta) < 6) return; // ignore microscopics
+
+    if (delta > 0) {
+      // user is scrolling down -> arrow should be down (unless at last section)
+      if (currentIndex !== sections.length - 1) arrow.classList.remove('up');
+    } else {
+      // user scrolling up -> arrow should be up (unless at home)
+      if (currentIndex !== 0) arrow.classList.add('up');
+    }
+  }
+
+  function handleTouchStart(e){
+    lastTouchY = e.touches ? e.touches[0].clientY : null;
+  }
+  function handleTouchMove(e){
+    if (lastTouchY == null) return;
+    const y = e.touches ? e.touches[0].clientY : null;
+    if (y == null) return;
+    const dy = lastTouchY - y; // positive if user swiped up (content moves down)
+    if (Math.abs(dy) < 8) return; // small threshold
+
+    if (dy > 0) {
+      // user swiped up -> intent to move down content -> arrow down
+      if (currentIndex !== sections.length - 1) arrow.classList.remove('up');
+    } else {
+      // user swiped down -> intent to move up content -> arrow up
+      if (currentIndex !== 0) arrow.classList.add('up');
+    }
+    lastTouchY = y;
+  }
+  function handleTouchEnd(){ lastTouchY = null; }
+
+  window.addEventListener('wheel', handleWheel, { passive: true });
+  window.addEventListener('touchstart', handleTouchStart, { passive: true });
+  window.addEventListener('touchmove', handleTouchMove, { passive: true });
+  window.addEventListener('touchend', handleTouchEnd, { passive: true });
+
+  // Scroll handler: prefer a section whose top is within ±40px of viewport top,
+  // otherwise pick the closest by distance. This ensures we keep going up until Home is really reached.
+  let scrollTimer;
+  window.addEventListener('scroll', function(){
+    clearTimeout(scrollTimer);
+    scrollTimer = setTimeout(() => {
+      // try to find a section near the top
+      let nearIdx = -1;
+      for (let i = 0; i < sections.length; i++) {
+        const rect = sections[i].getBoundingClientRect();
+        if (rect.top >= -40 && rect.top <= 40) {
+          nearIdx = i;
+          break;
+        }
+      }
+
+      if (nearIdx !== -1) {
+        currentIndex = nearIdx;
+      } else {
+        // fallback to closest by distance
+        let closestIdx = 0;
+        let closestDist = Infinity;
+        sections.forEach((s, i) => {
+          const rect = s.getBoundingClientRect();
+          const dist = Math.abs(rect.top);
+          if (dist < closestDist) {
+            closestDist = dist;
+            closestIdx = i;
+          }
+        });
+        currentIndex = closestIdx;
+      }
+
+      // enforce extremes: last -> up, first -> down
+      if (currentIndex === sections.length - 1) {
+        arrow.classList.add('up');
+      } else if (currentIndex === 0) {
+        arrow.classList.remove('up');
+      }
+
+      highlightNav(currentIndex);
+    }, 80);
+  });
+
+  // On page load, initialize currentIndex and arrow state
+  window.addEventListener('load', () => {
+    let startIdx = 0;
+    let minDist = Infinity;
+    sections.forEach((s, i) => {
+      const rect = s.getBoundingClientRect();
+      const dist = Math.abs(rect.top);
+      if (dist < minDist) { minDist = dist; startIdx = i; }
+    });
+    currentIndex = startIdx;
+    if (currentIndex === sections.length - 1) arrow.classList.add('up');
+    else arrow.classList.remove('up');
+    highlightNav(currentIndex);
+  });
+
+  // Optional: keyboard up/down reflect mood immediately
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowDown') {
+      if (currentIndex < sections.length - 1) arrow.classList.remove('up');
+    } else if (e.key === 'ArrowUp') {
+      if (currentIndex > 0) arrow.classList.add('up');
+    }
+  });
+
+})();
