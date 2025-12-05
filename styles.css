@@ -627,7 +627,7 @@ display: none;
   position: relative;
   top: 6.5px; /* you can keep it for moving text upward */
   /* REMOVE scroll-margin-top from here */
-  margin-top: 2rem;
+  margin-top: 2.25rem;
 }
 
 
@@ -647,6 +647,9 @@ display: none;
     font-weight: 700;
 }
 
+.country {
+  font-size: 2.5rem !important;
+}
 .home-content h3 :nth-of-type(2) {
     margin-bottom: 2rem;
 }
@@ -758,6 +761,9 @@ font-size: 2.2rem;
   color: #000;
   cursor: pointer;
   user-select: none;
+
+    /* NEW: Border */
+  border: 2px solid #ffffff;   /* change color as needed */
 
   /* smooth rotation and color transitions */
   transition: transform 300ms ease, background 200ms ease, color 200ms ease, box-shadow 200ms ease;
