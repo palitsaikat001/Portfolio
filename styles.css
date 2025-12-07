@@ -758,7 +758,7 @@ font-size: 2.2rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #000;
+  color: #ffffff;
   cursor: pointer;
   user-select: none;
 
@@ -777,6 +777,7 @@ font-size: 2.2rem;
 
 header .arrow1:hover {
   color: #00ff00; /* green arrow */
+  border: 2px solid #00ff00;
 }
 
 
@@ -3083,6 +3084,12 @@ body.project-open .menu-btn.active:hover {
 
 /* ↓↓↓ 768px and below ↓↓↓ */
 @media (max-width: 768px) {
+
+  .header .arrow1 {     /* if you have two buttons */
+    display: none !important;
+  }
+
+
   .header {
     width: 90px;
     padding: 1rem;
