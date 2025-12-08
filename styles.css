@@ -2422,6 +2422,16 @@ body.project-open .menu-btn.active:hover {
   margin: 2.5rem 1.5rem 2rem 0; /* Removes the extra space around icons */
 }
 
+.form-title {
+  font-size: 2.5rem;
+  color: var(--main-color);
+  font-weight: 700;
+}
+
+.form-description {
+  font-size: 1.5rem;
+
+}
 
 .contact-info h2 {
   font-size: 5.5rem; /* was 6rem */
@@ -2486,8 +2496,7 @@ body.project-open .menu-btn.active:hover {
   border-radius: 0.75rem; /* was 1rem */
   box-shadow: 0 0 0.75rem rgba(0, 0, 0, 0.1); /* was 1rem */
   margin-top: 3.75rem; /* was 5rem */
-
-  
+text-align: center;
 }
 
 .contact-form-wrapper textarea {
@@ -2526,7 +2535,7 @@ body.project-open .menu-btn.active:hover {
   max-width: 60rem; /* was 80rem */
   margin: 1.125rem auto; /* was 1.5rem */
   text-align: center;
-  margin-top: 2.5rem;
+  margin-top: 0rem;
   margin-bottom: 2.625rem; /* was 3.5rem */
   padding: 0.5rem; /* was 2rem */
   background: transparent;
