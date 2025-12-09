@@ -97,7 +97,7 @@ ScrollReveal({
   duration: 2000,
   delay: 200,
 });
-ScrollReveal().reveal(".home-content, .heading, .contact-info", { origin: "top" });
+ScrollReveal().reveal(".home-content, .heading, .contact-info, .form-description", { origin: "top" });
 ScrollReveal().reveal(".skills-reveal, .skills-reveal1, .portfolio-box, .contact form", { origin: "bottom" });
 ScrollReveal().reveal(".home-img", {
   origin: "none",     // Removes directional animation
@@ -109,6 +109,9 @@ ScrollReveal().reveal(".home-img", {
 });
 ScrollReveal().reveal(".home-content h1, .about-img", { origin: "left" });
 ScrollReveal().reveal(".home-content p, .about-content", { origin: "right" });
+
+ScrollReveal().reveal(".form-title", { origin: "top", delay: 200 });
+
 
 const expTab = document.querySelector('[data-target="experience"]');
 const btechTab = document.querySelector('[data-target="btech"]');
