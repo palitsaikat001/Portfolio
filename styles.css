@@ -627,7 +627,7 @@ display: none;
   position: relative;
   top: 6.5px; /* you can keep it for moving text upward */
   /* REMOVE scroll-margin-top from here */
-  margin-top: 2.25rem;
+  margin-top: 2.75rem;
 }
 
 
@@ -2419,7 +2419,7 @@ body.project-open .menu-btn.active:hover {
 
 
 .contact-info .social-media a {
-  margin: 2.5rem 1.5rem 2rem 0; /* Removes the extra space around icons */
+  margin: 1.5rem 1.5rem 2rem 0; /* Removes the extra space around icons */
 }
 
 .form-title {
@@ -2434,8 +2434,8 @@ body.project-open .menu-btn.active:hover {
 }
 
 .contact-info h2 {
-  font-size: 5.5rem; /* was 6rem */
-  margin-bottom: 0.5rem; /* was 1rem */
+  font-size: 6.5rem; /* was 6rem */
+  margin-bottom: 0rem; /* was 1rem */
   text-align: left;
 }
 
@@ -2446,7 +2446,7 @@ body.project-open .menu-btn.active:hover {
 .contact-info p {
   font-size: 1.55rem; /* was 1.8rem */
   margin-bottom: 2.55rem; /* was 2rem */
-  margin-top: 0.75rem;
+  margin-top: 0.5rem;
   text-align: left;
 }
 
@@ -3836,7 +3836,7 @@ main.shifted {
   }
   .contact-container {
     padding: 0 0rem;
-    gap: 2rem;
+    gap: 3.5rem;
   }
 
   .contact-form-wrapper {
