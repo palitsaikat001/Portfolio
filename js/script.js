@@ -2,11 +2,13 @@
 let menuIcon = document.querySelector("#menu-icon");
 let navbar = document.querySelector(".navbar");
 const main = document.querySelector("main");
+let skillmove = document.querySelector(".skill-logo-boxx");
 
 menuIcon.onclick = () => {
   menuIcon.classList.toggle("bx-x");
   navbar.classList.toggle("active");
   main.classList.toggle("shifted"); // shift main content
+  skillmove.classList.toggle("active");
 };
 
 document.addEventListener("click", (e) => {
@@ -31,6 +33,7 @@ function closeMenu() {
   navbar.classList.remove("active");
   menuIcon.classList.remove("bx-x");
   main.classList.remove("shifted");
+  skillmove.classList.remove("active")
 }
 
 // Scroll Sections Active Links
