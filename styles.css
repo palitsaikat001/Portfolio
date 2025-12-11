@@ -1381,6 +1381,10 @@ color:var(--text-color)
     font-size: 12.5px;
 }
 
+.skill-move i {
+  margin-bottom: 5px;
+}
+
 .type1 {
   width: 55px;
 }
@@ -3478,9 +3482,9 @@ padding: 0 2.5rem;
    width: 59px; /* same as .skill-icon */
 }
 
-  .skill-icon1:nth-last-child(-n+2) {
+  /* .skill-icon1:nth-last-child(-n+2) {
     width: 125px;
-  }
+  } */
 
   .databasee .skill-icon1 {
     width: 80px;
@@ -3714,6 +3718,15 @@ padding: 0 2.5rem;
   .navbar a {
     margin: 0 1rem; 
   } */
+
+  .skill-logo-boxx {
+    width: 300px;
+  }
+  
+  .skill-move {
+    margin-right: 40px;
+    width: 75px;
+  }
 
   .name-desktop {
     display: none;
