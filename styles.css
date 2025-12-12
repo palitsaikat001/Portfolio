@@ -1169,6 +1169,7 @@ color:var(--text-color)
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
   align-items: center;
+  min-width: 0;
 }
 
 #services1 .skill-group{
@@ -1216,13 +1217,12 @@ color:var(--text-color)
 }
   /* The Container Box */
   .skill-logo-boxx {
-    width: 900px;
-    height: 80.5px;
-    background: var(--second-bg-color);   
-    overflow: hidden; /* Hides the items outside the box */
-    position: relative;
-    display: flex;
-    align-items: center;
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
+  height: 80.5px;
+   min-height: 60px;     /* prevents collapse on tiny screens */
   }
 
   .skill-logo-boxx.active {
@@ -1231,17 +1231,21 @@ color:var(--text-color)
 
   /* The Scrolling Track */
   .skill-track {
-    display: flex;
-    width: max-content;
-    animation: scroll 15s linear infinite;
+  position: absolute;   /* taken out of document flow */
+  left: 0;
+  top: 0;
+  height: 100%;
+  display: flex;
+  width: max-content;   /* keeps track wide for seamless duplicating */
+  animation: scroll 15s linear infinite;
   }
 
   
 
     /* Infinite Animation */
   @keyframes scroll {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); } /* Moves halfway through the double list */
+     0%   { transform: translateX(0) translateY(-50%); }
+  100% { transform: translateX(-50%) translateY(-50%); }
   }
 
   /* Pause on hover for readability */
@@ -1375,7 +1379,7 @@ color:var(--text-color)
 .skill-move {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content:flex-end;
     align-items: center;
 
     width: 150px;   /* WIDER */
@@ -2966,6 +2970,8 @@ text-align: center;
 }
 /* ↓↓↓ 991px and below ↓↓↓ */
 @media (max-width: 991px) {
+
+
   .header {
     width: 100px;
     padding: 1.2rem;
@@ -3483,9 +3489,7 @@ padding: 0 2.5rem;
   max-width: 100%;
 }
 
-.skill-icon1 {
-   width: 59px; /* same as .skill-icon */
-}
+
 
   /* .skill-icon1:nth-last-child(-n+2) {
     width: 125px;
@@ -3738,9 +3742,6 @@ padding: 0 2.5rem;
   .social-row {
     display: block;
     margin-top: 30px;
-  }
-  .skill-logo-boxx {
-    max-width: 325px;
   }
   
   .skill-move {
