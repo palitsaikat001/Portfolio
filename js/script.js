@@ -870,17 +870,15 @@ messageBox2.addEventListener("focus", () => {
 
 
 
-const countryEl = document.getElementById('country');
-let isBharat = true;
+// const countryEl = document.getElementById('country');
+// let isBharat = true;
 
-setInterval(() => {
-  countryEl.classList.add('fade-out');
-  setTimeout(() => {
-    countryEl.textContent = isBharat ? 'INDIA' : 'BHARAT';
-    isBharat = !isBharat;
-    countryEl.classList.remove('fade-out');
-  }, 1000);
-}, 3000);
+// setInterval(() => {
+//   setTimeout(() => {
+//     countryEl.textContent = isBharat ? 'INDIA' : 'BHARAT';
+//     isBharat = !isBharat;
+//   }, 1000);
+// }, 3000);
 
 
 
