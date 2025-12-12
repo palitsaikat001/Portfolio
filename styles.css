@@ -3895,7 +3895,7 @@ main.shifted {
  .home-wrapper {
 
     flex-direction: column;
-    gap: 5rem; /* Optional: reduce gap between text and image */
+    gap: 2.5rem; /* Optional: reduce gap between text and image */
     padding: 5rem 0rem;
   }
 
