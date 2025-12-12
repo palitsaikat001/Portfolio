@@ -1,112 +1,225 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Skills Ticker with Side Menu</title>
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
 
-<style>
-  :root {
-    --bg-color: #1a1a1a;
-    --box-border: #333;
-    --text-color: #e0e0e0;
-  }
+  <style>
+    :root{
+      --bg:#121212;
+      --box-border:#333;
+      --accent:#00ff9d;
+      --menu-width:180px;
+    }
 
-  body {
-    background-color: #121212;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-    font-family: 'Courier New', Courier, monospace;
-  }
+    /* page */
+    body{
+      margin:0;
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:var(--bg);
+      font-family: 'Courier New', Courier, monospace;
+      color:#eaeaea;
+    }
 
-  /* ==== MAIN BOX ==== */
-  .news-ticker-box {
-    width: 900px;              /* BIGGER WIDTH */
-    height: 120px;             /* BIGGER HEIGHT */
-    border: 2px solid var(--box-border);
-    background: linear-gradient(145deg, #1d1d1d, #111111);
-    box-shadow: inset 0 0 15px #000;
-    overflow: hidden;
-    position: relative;
-    display: flex;
-    align-items: center;
-  }
+    /* main container */
+    .news-ticker-box{
+      width: 920px;
+      height: 130px;
+      border:2px solid var(--box-border);
+      background: linear-gradient(145deg,#1d1d1d,#111111);
+      box-shadow: inset 0 0 15px #000;
+      overflow: hidden;
+      position: relative;
+      display: flex;            /* left menu + ticker area */
+      align-items: stretch;
+      gap: 0;
+      border-radius:6px;
+    }
 
-  /* ==== TRACK ==== */
-  .ticker-track {
-    display: flex;
-    width: max-content;
-    animation: scroll 15s linear infinite;
-  }
+    /* ----- LEFT SIDE MENU (single side header with menus) ----- */
+    .side-menu{
+      width: var(--menu-width);
+      min-width: var(--menu-width);
+      background: linear-gradient(180deg,#0f0f0f,#0b0b0b);
+      border-right: 1px solid rgba(255,255,255,0.03);
+      padding: 10px;
+      box-sizing: border-box;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      gap:10px;
+    }
 
-  /* ==== EACH SKILL BOX ==== */
-  .skill-node {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    .side-menu .title{
+      font-size:14px;
+      letter-spacing:1px;
+      color:var(--accent);
+      font-weight:700;
+      text-align:center;
+      margin-bottom:6px;
+    }
 
-    width: 150px;   /* WIDER */
-    height: 120px;  /* TALLER */
+    .side-menu nav{
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+      align-items:flex-start;
+    }
 
-    text-align: center;
-    color: #ffffff;
-    font-size: 10px;
-  }
+    .side-menu a{
+      color:#dfeee8;
+      text-decoration:none;
+      font-size:13px;
+      padding:6px 8px;
+      border-radius:4px;
+      display:block;
+      width:100%;
+    }
 
-  /* ==== ICON ==== */
-  .skill-node i {
-    font-size: 25px;    /* BIGGER ICON */
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    background: #333;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 10px;  /* spacing */
-  }
+    .side-menu a:hover{
+      background: rgba(0,255,157,0.06);
+      color:var(--accent);
+    }
 
-  /* ==== SCROLL ANIMATION ==== */
-  @keyframes scroll {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-  }
+    /* optional small label under title */
+    .side-menu .sub{
+      font-size:11px;
+      color:#8f8f8f;
+      text-align:center;
+    }
 
-  /* Pause when hover */
-  .news-ticker-box:hover .ticker-track {
-    animation-play-state: paused;
-  }
+    /* ----- RIGHT: ticker wrapper (keeps skills away from menu) ----- */
+    .ticker-wrapper{
+      flex:1;                 /* takes remaining width */
+      display:flex;
+      align-items:center;
+      overflow:hidden;        /* keep the track clipped inside this area */
+      position:relative;
+      padding-left:12px;
+      padding-right:12px;
+    }
 
-</style>
+    /* track — duplicated items appended inside this track for infinite loop */
+    .ticker-track{
+      display:flex;
+      width: max-content;    /* important: so it only grows as wide as contents */
+      align-items:center;
+      gap: 18px;
+      animation: scroll 14s linear infinite;
+      /* smooth subpixel movement */
+      will-change: transform;
+    }
+
+    /* one skill item */
+    .skill-node{
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      width:150px;
+      height:100px;
+      text-align:center;
+      color:#ffffff;
+      font-size:12px;
+      flex-shrink:0;      /* prevent shrinking */
+    }
+
+    .skill-node i{
+      font-size:26px;
+      width:48px;
+      height:48px;
+      border-radius:50%;
+      background:#222;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      margin-bottom:8px;
+    }
+
+    /* animation moves left by 50% of track's width (works when content is duplicated) */
+    @keyframes scroll{
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* pause on hover over wrapper */
+    .ticker-wrapper:hover .ticker-track{
+      animation-play-state: paused;
+    }
+
+    /* small screens: stack menu above ticker */
+    @media (max-width:700px){
+      .news-ticker-box{
+        width: calc(100% - 40px);
+        height: auto;
+        flex-direction:column;
+      }
+      .side-menu{
+        width:100%;
+        min-width:100%;
+        border-right:none;
+        border-bottom: 1px solid rgba(255,255,255,0.03);
+        padding:10px 12px;
+      }
+      .ticker-wrapper{
+        padding:12px;
+        height:90px;
+      }
+      .skill-node{
+        width:120px;
+        height:80px;
+        font-size:11px;
+      }
+    }
+  </style>
 </head>
 <body>
 
-<div class="news-ticker-box">
+  <div class="news-ticker-box">
 
-  <div class="ticker-track">
+    <!-- LEFT: single side header with vertical menu -->
+    <div class="side-menu" aria-label="Skills menu">
+      <div class="title">MY MENU</div>
+      <div class="sub">quick links</div>
 
-    <!-- ORIGINAL SET -->
-    <div class="skill-node"><i class="devicon-c-plain colored"></i> C</div>
-    <div class="skill-node"><i class="devicon-cplusplus-plain colored"></i> C++</div>
-    <div class="skill-node"><i class="devicon-javascript-plain colored"></i> JS</div>
-    <div class="skill-node"><i class="devicon-python-plain colored"></i> Python</div>
-    <div class="skill-node"><i class="devicon-codepen-plain"></i> DSA</div>
-    <div class="skill-node"><i class="devicon-codepen-plain colored"></i> CodeChef 3⭐</div>
+      <nav>
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
 
-    <!-- DUPLICATED FOR INFINITE SCROLL -->
-    <div class="skill-node"><i class="devicon-c-plain colored"></i> C</div>
-    <div class="skill-node"><i class="devicon-cplusplus-plain colored"></i> C++</div>
-    <div class="skill-node"><i class="devicon-javascript-plain colored"></i> JS</div>
-    <div class="skill-node"><i class="devicon-python-plain colored"></i> Python</div>
-    <div class="skill-node"><i class="devicon-codepen-plain"></i> DSA</div>
-    <div class="skill-node"><i class="devicon-codepen-plain colored"></i> CodeChef 3⭐</div>
+    <!-- RIGHT: ticker area (will NOT overlap the left menu) -->
+    <div class="ticker-wrapper" aria-hidden="false">
+      <div class="ticker-track" role="list">
+
+        <!-- ORIGINAL SET (group A) -->
+        <div class="skill-node" role="listitem"><i class="devicon-c-plain colored"></i><span>C</span></div>
+        <div class="skill-node" role="listitem"><i class="devicon-cplusplus-plain colored"></i><span>C++</span></div>
+        <div class="skill-node" role="listitem"><i class="devicon-javascript-plain colored"></i><span>JS</span></div>
+        <div class="skill-node" role="listitem"><i class="devicon-python-plain colored"></i><span>Python</span></div>
+        <div class="skill-node" role="listitem"><i class="devicon-codepen-plain"></i><span>DSA</span></div>
+        <div class="skill-node" role="listitem"><i class="devicon-codepen-plain colored"></i><span>CodeChef 3⭐</span></div>
+
+        <!-- DUPLICATE SET (group B) - necessary for smooth infinite scroll -->
+        <div class="skill-node" role="listitem"><i class="devicon-c-plain colored"></i><span>C</span></div>
+        <div class="skill-node" role="listitem"><i class="devicon-cplusplus-plain colored"></i><span>C++</span></div>
+        <div class="skill-node" role="listitem"><i class="devicon-javascript-plain colored"></i><span>JS</span></div>
+        <div class="skill-node" role="listitem"><i class="devicon-python-plain colored"></i><span>Python</span></div>
+        <div class="skill-node" role="listitem"><i class="devicon-codepen-plain"></i><span>DSA</span></div>
+        <div class="skill-node" role="listitem"><i class="devicon-codepen-plain colored"></i><span>CodeChef 3⭐</span></div>
+
+      </div>
+    </div>
 
   </div>
-
-</div>
 
 </body>
 </html>

@@ -1168,6 +1168,7 @@ color:var(--text-color)
     flex: 1 1 calc(50% - 0.5rem);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
+  align-items: center;
 }
 
 #services1 .skill-group{
@@ -1234,6 +1235,8 @@ color:var(--text-color)
     width: max-content;
     animation: scroll 15s linear infinite;
   }
+
+  
 
     /* Infinite Animation */
   @keyframes scroll {
@@ -3737,7 +3740,7 @@ padding: 0 2.5rem;
     margin-top: 30px;
   }
   .skill-logo-boxx {
-    width: 300px;
+    max-width: 300px;
   }
   
   .skill-move {
