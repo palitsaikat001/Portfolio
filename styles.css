@@ -684,7 +684,33 @@ span {
   display: inline-block;
   margin-top: 5.5px; /* increase as needed */
     color: #a7a7a7;
+    text-transform:none !important;
 }
+
+
+.projects {
+  color: #00ff48;
+  text-decoration: none;
+  font-weight: 600;
+  position: relative;
+}
+
+.projects::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -3px;
+  width: 0;
+  height: 2px;
+  background: #00ff48;
+  transform: translateX(-50%);
+  transition: width 0.3s ease;
+}
+
+.projects:hover::after {
+  width: 100%;
+}
+
 
 
 
@@ -2179,10 +2205,13 @@ body.project-open .menu-btn.active:hover {
 
 .portfolio-box.active .expanded-details img {
   width: 45%;
-  height: 50%;
+  height: auto;              /* ✅ let image decide height */
+  max-height: 320px;         /* optional safety limit */
+  object-fit: contain;       /* keep full image visible */
   border-radius: 1.5rem;
   margin-bottom: 1.5rem;
 }
+
 
 
 /* Expanded details box styling */

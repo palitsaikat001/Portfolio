@@ -108,8 +108,8 @@ ScrollReveal().reveal(".home-img", {
   easing: "ease-in-out",
   reset: false
 });
-ScrollReveal().reveal(".home-content h1, .about-img", { origin: "left" });
-ScrollReveal().reveal(".home-content p, .about-content", { origin: "right" });
+ScrollReveal().reveal(".home-content h1, .home-content p, .about-img", { origin: "left" });
+ScrollReveal().reveal(".about-content", { origin: "right" });
 
 ScrollReveal().reveal(".form-title", { origin: "top", delay: 200 });
 
