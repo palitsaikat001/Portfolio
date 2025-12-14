@@ -693,6 +693,7 @@ span {
   text-decoration: none;
   font-weight: 600;
   position: relative;
+  cursor: pointer;
 }
 
 .projects:hover {
