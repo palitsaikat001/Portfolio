@@ -532,7 +532,7 @@ function initStarBackground(section, numStars = 150) {
       stars.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
-        radius: Math.random() * 1.5,
+        radius: Math.random() * 1.25,
         speed: Math.random() * 0.2 + 0.05
       });
     }

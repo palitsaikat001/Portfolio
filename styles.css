@@ -695,17 +695,11 @@ span {
   position: relative;
 }
 
-.projects::after {
-  content: '';
-  position: absolute;
-  left: 50%;
-  bottom: -3px;
-  width: 0;
-  height: 2px;
-  background: #00ff48;
-  transform: translateX(-50%);
-  transition: width 0.3s ease;
+.projects:hover {
+  color: #5cff8a;
+  text-shadow: 0 0 8px rgba(0,255,72,0.6);
 }
+
 
 .projects:hover::after {
   width: 100%;
@@ -3757,6 +3751,9 @@ padding: 0 2.5rem;
     margin: 0 1rem; 
   } */
 
+  .services-box {
+  margin-bottom: 1.25rem;
+  }
   .btn-wrapper {
     margin-top: 0.5rem;
   }
@@ -3925,7 +3922,7 @@ main.shifted {
  .home-wrapper {
 
     flex-direction: column;
-    gap: 2.5rem; /* Optional: reduce gap between text and image */
+    gap: 3.5rem; /* Optional: reduce gap between text and image */
     padding: 5rem 0rem;
   }
 
