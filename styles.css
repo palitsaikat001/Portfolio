@@ -3752,7 +3752,7 @@ padding: 0 2.5rem;
   } */
 
   .services-box {
-  margin-bottom: 1.25rem;
+    margin-bottom: 1.25rem;
   }
   .btn-wrapper {
     margin-top: 0.5rem;
@@ -3922,7 +3922,7 @@ main.shifted {
  .home-wrapper {
 
     flex-direction: column;
-    gap: 3.5rem; /* Optional: reduce gap between text and image */
+    gap: 2.5rem; /* Optional: reduce gap between text and image */
     padding: 5rem 0rem;
   }
 
