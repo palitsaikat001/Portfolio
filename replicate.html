@@ -1,225 +1,225 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Skills Ticker with Side Menu</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Character Counter | Pro Tool</title>
 
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
-    :root{
-      --bg:#121212;
-      --box-border:#333;
-      --accent:#00ff9d;
-      --menu-width:180px;
+    :root {
+      --bg: #0f1117;
+      --card: #171a21;
+      --accent: #00ff88;
+      --text: #e6e6e6;
+      --muted: #9aa0a6;
+      --border: #262a33;
     }
 
-    /* page */
-    body{
-      margin:0;
-      min-height:100vh;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      background:var(--bg);
-      font-family: 'Courier New', Courier, monospace;
-      color:#eaeaea;
-    }
-
-    /* main container */
-    .news-ticker-box{
-      width: 920px;
-      height: 130px;
-      border:2px solid var(--box-border);
-      background: linear-gradient(145deg,#1d1d1d,#111111);
-      box-shadow: inset 0 0 15px #000;
-      overflow: hidden;
-      position: relative;
-      display: flex;            /* left menu + ticker area */
-      align-items: stretch;
-      gap: 0;
-      border-radius:6px;
-    }
-
-    /* ----- LEFT SIDE MENU (single side header with menus) ----- */
-    .side-menu{
-      width: var(--menu-width);
-      min-width: var(--menu-width);
-      background: linear-gradient(180deg,#0f0f0f,#0b0b0b);
-      border-right: 1px solid rgba(255,255,255,0.03);
-      padding: 10px;
+    * {
       box-sizing: border-box;
-      display:flex;
-      flex-direction:column;
-      justify-content:center;
-      gap:10px;
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
     }
 
-    .side-menu .title{
-      font-size:14px;
-      letter-spacing:1px;
-      color:var(--accent);
-      font-weight:700;
-      text-align:center;
-      margin-bottom:6px;
+    body {
+      min-height: 100vh;
+      background: radial-gradient(circle at top, #151824, var(--bg));
+      color: var(--text);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 1.5rem;
     }
 
-    .side-menu nav{
-      display:flex;
-      flex-direction:column;
-      gap:6px;
-      align-items:flex-start;
+    .app {
+      width: 100%;
+      max-width: 900px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 1.25rem;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+      padding: 2rem;
     }
 
-    .side-menu a{
-      color:#dfeee8;
-      text-decoration:none;
-      font-size:13px;
-      padding:6px 8px;
-      border-radius:4px;
-      display:block;
-      width:100%;
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
     }
 
-    .side-menu a:hover{
-      background: rgba(0,255,157,0.06);
-      color:var(--accent);
+    .header h1 {
+      font-size: 1.8rem;
+      font-weight: 600;
     }
 
-    /* optional small label under title */
-    .side-menu .sub{
-      font-size:11px;
-      color:#8f8f8f;
-      text-align:center;
+    .header span {
+      color: var(--accent);
     }
 
-    /* ----- RIGHT: ticker wrapper (keeps skills away from menu) ----- */
-    .ticker-wrapper{
-      flex:1;                 /* takes remaining width */
-      display:flex;
-      align-items:center;
-      overflow:hidden;        /* keep the track clipped inside this area */
-      position:relative;
-      padding-left:12px;
-      padding-right:12px;
+    .sub {
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin-top: 0.25rem;
     }
 
-    /* track — duplicated items appended inside this track for infinite loop */
-    .ticker-track{
-      display:flex;
-      width: max-content;    /* important: so it only grows as wide as contents */
-      align-items:center;
-      gap: 18px;
-      animation: scroll 14s linear infinite;
-      /* smooth subpixel movement */
-      will-change: transform;
+    textarea {
+      width: 100%;
+      height: 260px;
+      resize: none;
+      background: #0f121a;
+      border: 1px solid var(--border);
+      border-radius: 1rem;
+      padding: 1.2rem;
+      color: var(--text);
+      font-size: 1rem;
+      line-height: 1.6;
+      outline: none;
+      transition: border 0.2s ease, box-shadow 0.2s ease;
     }
 
-    /* one skill item */
-    .skill-node{
-      display:flex;
-      flex-direction:column;
-      justify-content:center;
-      align-items:center;
-      width:150px;
-      height:100px;
-      text-align:center;
-      color:#ffffff;
-      font-size:12px;
-      flex-shrink:0;      /* prevent shrinking */
+    textarea:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 2px rgba(0, 255, 136, 0.15);
     }
 
-    .skill-node i{
-      font-size:26px;
-      width:48px;
-      height:48px;
-      border-radius:50%;
-      background:#222;
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      margin-bottom:8px;
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 1rem;
+      margin-top: 1.5rem;
     }
 
-    /* animation moves left by 50% of track's width (works when content is duplicated) */
-    @keyframes scroll{
-      0%   { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
+    .stat {
+      background: #0f121a;
+      border: 1px solid var(--border);
+      border-radius: 1rem;
+      padding: 1.25rem;
+      text-align: center;
     }
 
-    /* pause on hover over wrapper */
-    .ticker-wrapper:hover .ticker-track{
-      animation-play-state: paused;
+    .stat h3 {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--muted);
+      margin-bottom: 0.3rem;
     }
 
-    /* small screens: stack menu above ticker */
-    @media (max-width:700px){
-      .news-ticker-box{
-        width: calc(100% - 40px);
-        height: auto;
-        flex-direction:column;
-      }
-      .side-menu{
-        width:100%;
-        min-width:100%;
-        border-right:none;
-        border-bottom: 1px solid rgba(255,255,255,0.03);
-        padding:10px 12px;
-      }
-      .ticker-wrapper{
-        padding:12px;
-        height:90px;
-      }
-      .skill-node{
-        width:120px;
-        height:80px;
-        font-size:11px;
+    .stat p {
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    .footer {
+      margin-top: 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer small {
+      color: var(--muted);
+    }
+
+    .clear-btn {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 0.6rem 1.2rem;
+      border-radius: 0.75rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .clear-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    @media (max-width: 600px) {
+      textarea {
+        height: 200px;
       }
     }
   </style>
 </head>
 <body>
 
-  <div class="news-ticker-box">
-
-    <!-- LEFT: single side header with vertical menu -->
-    <div class="side-menu" aria-label="Skills menu">
-      <div class="title">MY MENU</div>
-      <div class="sub">quick links</div>
-
-      <nav>
-        <a href="#about">About</a>
-        <a href="#projects">Projects</a>
-        <a href="#skills">Skills</a>
-        <a href="#contact">Contact</a>
-      </nav>
-    </div>
-
-    <!-- RIGHT: ticker area (will NOT overlap the left menu) -->
-    <div class="ticker-wrapper" aria-hidden="false">
-      <div class="ticker-track" role="list">
-
-        <!-- ORIGINAL SET (group A) -->
-        <div class="skill-node" role="listitem"><i class="devicon-c-plain colored"></i><span>C</span></div>
-        <div class="skill-node" role="listitem"><i class="devicon-cplusplus-plain colored"></i><span>C++</span></div>
-        <div class="skill-node" role="listitem"><i class="devicon-javascript-plain colored"></i><span>JS</span></div>
-        <div class="skill-node" role="listitem"><i class="devicon-python-plain colored"></i><span>Python</span></div>
-        <div class="skill-node" role="listitem"><i class="devicon-codepen-plain"></i><span>DSA</span></div>
-        <div class="skill-node" role="listitem"><i class="devicon-codepen-plain colored"></i><span>CodeChef 3⭐</span></div>
-
-        <!-- DUPLICATE SET (group B) - necessary for smooth infinite scroll -->
-        <div class="skill-node" role="listitem"><i class="devicon-c-plain colored"></i><span>C</span></div>
-        <div class="skill-node" role="listitem"><i class="devicon-cplusplus-plain colored"></i><span>C++</span></div>
-        <div class="skill-node" role="listitem"><i class="devicon-javascript-plain colored"></i><span>JS</span></div>
-        <div class="skill-node" role="listitem"><i class="devicon-python-plain colored"></i><span>Python</span></div>
-        <div class="skill-node" role="listitem"><i class="devicon-codepen-plain"></i><span>DSA</span></div>
-        <div class="skill-node" role="listitem"><i class="devicon-codepen-plain colored"></i><span>CodeChef 3⭐</span></div>
-
+  <div class="app">
+    <div class="header">
+      <div>
+        <h1>Character <span>Counter</span></h1>
+        <div class="sub">Professional text analysis tool</div>
       </div>
     </div>
 
+    <textarea id="textInput" placeholder="Start typing or paste your text here..."></textarea>
+
+    <div class="stats">
+      <div class="stat">
+        <h3>Characters</h3>
+        <p id="charCount">0</p>
+      </div>
+      <div class="stat">
+        <h3>Characters (no spaces)</h3>
+        <p id="charNoSpace">0</p>
+      </div>
+      <div class="stat">
+        <h3>Words</h3>
+        <p id="wordCount">0</p>
+      </div>
+      <div class="stat">
+        <h3>Lines</h3>
+        <p id="lineCount">0</p>
+      </div>
+    </div>
+
+    <div class="footer">
+      <small>Instant, client-side — no data is stored</small>
+      <button class="clear-btn" id="clearBtn">Clear Text</button>
+    </div>
   </div>
+
+  <script>
+    const textInput = document.getElementById('textInput');
+    const charCount = document.getElementById('charCount');
+    const charNoSpace = document.getElementById('charNoSpace');
+    const wordCount = document.getElementById('wordCount');
+    const lineCount = document.getElementById('lineCount');
+    const clearBtn = document.getElementById('clearBtn');
+
+    function updateCounts() {
+      const text = textInput.value;
+
+      charCount.textContent = text.length;
+      charNoSpace.textContent = text.replace(/\s/g, '').length;
+
+      const words = text.trim().length === 0
+        ? 0
+        : text.trim().split(/\s+/).length;
+      wordCount.textContent = words;
+
+      const lines = text.length === 0
+        ? 0
+        : text.split(/\n/).length;
+      lineCount.textContent = lines;
+    }
+
+    textInput.addEventListener('input', updateCounts);
+
+    clearBtn.addEventListener('click', () => {
+      textInput.value = '';
+      updateCounts();
+      textInput.focus();
+    });
+  </script>
 
 </body>
 </html>
