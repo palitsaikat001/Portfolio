@@ -1228,6 +1228,9 @@ color:var(--text-color)
   transition: transform 0.3s ease;
 }
 
+.github {
+  width: 35px !important;
+}
 .skill-logo-box {
   display: flex;
   flex-wrap: wrap;
@@ -1482,6 +1485,11 @@ color:var(--text-color)
     animation: glowPulse 3s infinite ease-in-out;
 
 }
+
+.skill-icon img:hover {
+  border: white;
+}
+
 #portfolio .skill-icon1 img{
 
   width: 35px;
@@ -1995,7 +2003,7 @@ width: fit-content;
 
 
 
-.portfolio-container {
+/* .portfolio-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
   gap: 1.5rem;
@@ -2003,8 +2011,19 @@ width: fit-content;
   width: 100%;
   
   justify-content: center;
-  place-content: center;   /* centers rows and columns in grid */
-  justify-items: center;   /* centers items inside their columns */
+  place-content: center; 
+  justify-items: center; 
+} */
+
+
+.portfolio-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 items per row */
+  gap: 1.5rem;
+  max-width: 750px;
+  width: 100%;
+  margin: 0 auto;        /* center container */
+  justify-items: center; /* center cards inside columns */
 }
 
 
@@ -2017,6 +2036,9 @@ width: fit-content;
   display: flex;
   flex-direction: column;
     transition: all 0.4s ease;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
 }
 
 .portfolio-box.hide {
@@ -2046,7 +2068,7 @@ width: fit-content;
   background: rgba(0, 0, 0, 0.6);
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: center;
   align-items: center;
   padding: 0.5rem;
   opacity: 0;
@@ -2061,7 +2083,7 @@ width: fit-content;
 }
 
 .portfolio-layer h4 {
-  font-size: 1.75rem;
+  font-size: 1.5rem;
   color: var(--text-color);
   margin-bottom: 0.25rem;
 }
@@ -2199,12 +2221,11 @@ body.project-open .menu-btn.active:hover {
 }
 
 .portfolio-box.active .expanded-details img {
-  width: 45%;
+  width: 25%;
   height: auto;              /* ✅ let image decide height */
-  max-height: 320px;         /* optional safety limit */
-  object-fit: contain;       /* keep full image visible */
-  border-radius: 1.5rem;
+  max-height: 100%;         /* optional safety limit */     /* keep full image visible */
   margin-bottom: 1.5rem;
+  border-radius: 10px;
 }
 
 
@@ -2240,11 +2261,21 @@ body.project-open .menu-btn.active:hover {
 .expanded-details p {
   color: var(--text-color);
   margin-bottom: 0.5rem;
-  font-size: 1.25rem;
+  font-size: 1.35rem;
+  margin-top: 0.5rem;
 }
 
 .expanded-details h3 {
   font-size: 1.5rem;
+}
+
+.expanded-details h4 {
+  font-size: 1.35rem;
+
+}
+
+.expanded-details span {
+  color: var(--main-color);
 }
 
 .expanded-details .visit-btn {

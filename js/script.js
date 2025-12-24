@@ -99,7 +99,7 @@ ScrollReveal({
   delay: 200,
 });
 ScrollReveal().reveal(".home-content, .heading, .contact-info, .form-description", { origin: "top" });
-ScrollReveal().reveal(".skills-reveal, .skills-reveal1, .portfolio-box, .contact form", { origin: "bottom" });
+ScrollReveal().reveal(".skills-reveal, .skills-reveal1, .contact form", { origin: "bottom" });
 ScrollReveal().reveal(".home-img", {
   origin: "none",     // Removes directional animation
   distance: "0px",    // No sliding movement
