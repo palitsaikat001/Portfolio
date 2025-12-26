@@ -1903,7 +1903,6 @@ box-sizing: border-box;
   backdrop-filter: blur(5px);
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.05);
   max-width: 800px;
-  min-width: 800px;
   height: 375px;
 overflow-y: scroll;
 overflow-x: hidden;
@@ -2801,12 +2800,6 @@ text-align: center;
 
 @media screen and (min-width: 1400px) {
 
-
-  .glass1 {
-    min-width: 900px;
-    max-width: 900px;
-  }
-
   .type1 {
     width: 55px;
   }
@@ -2882,6 +2875,10 @@ text-align: center;
 
 .services {
   justify-content: center;
+}
+
+.glass1 {
+  max-width: 900px;
 }
 
 }
