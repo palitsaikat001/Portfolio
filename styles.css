@@ -3786,6 +3786,10 @@ padding: 0 2.5rem;
     margin: 0 1rem; 
   } */
 
+.portfolio-box.active .expanded-details img {
+  width: 45%;
+}
+  
   .services-box {
     margin-bottom: 1.25rem;
   }
@@ -4119,7 +4123,7 @@ padding: 0rem;
 .glass1 {
   padding: 1rem;
   height: auto;
-  max-height: 50vh;
+  max-height: 65vh;
 }
 
 .about-content1 {
@@ -4290,6 +4294,9 @@ margin-left: 0.95rem;
 
 @media (max-width: 395px) {
 
+  .contact-details1 span {
+    font-size: 1.5rem;
+  }
 
   .portfolio-layer p{
     font-size: 0.75rem;
