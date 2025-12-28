@@ -149,9 +149,10 @@ updateDateTime();
     <a href="https://yourwebsite.com" target="_blank" class="icon-btn" title="Visit my website">
       <i class='bx bx-globe'></i>
     </a>
-    <a href="https://github.com/yourusername" target="_blank" class="icon-btn" title="GitHub">
-      <i class='bx bxl-github'></i>
-    </a>
+<a href="#" class="icon-btn" title="GitHub" onclick="openGithub(event)">
+  <i class='bx bxl-github'></i>
+</a>
+
     <button id="theme-toggle" class="icon-btn" title="Toggle Theme">
       <i class='bx bx-star'></i>
     </button>
@@ -1233,6 +1234,33 @@ Best regards,
 
   </div>
 </div>
+
+
+<!-- Overlay -->
+<div id="githubOverlay" class="overlay">
+  <div class="overlay-content">
+
+    <!-- Cancel button (top-right red cross) -->
+    <button class="close-btn" onclick="closeGithub()">✕</button>
+
+    <!-- Calendar -->
+    <div id="github-calendar"></div>
+
+    <!-- Bottom button -->
+    <div class="bottom-btn">
+      <a href="https://github.com/yourusername" target="_blank" class="btn">
+        Visit GitHub
+      </a>
+    </div>
+
+  </div>
+</div>
+
+
+
+
+<link rel="stylesheet" href="https://unpkg.com/github-calendar@latest/dist/github-calendar-responsive.css" />
+<script src="https://unpkg.com/github-calendar@latest/dist/github-calendar.min.js"></script>
 
 
     <!-- Scroll reveal -->

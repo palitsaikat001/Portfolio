@@ -1129,3 +1129,29 @@ messageBox2.addEventListener("focus", () => {
   });
 
 })();
+
+
+ function openGithub(e) {
+    e.preventDefault();
+    document.getElementById("githubOverlay").style.display = "flex";
+
+    // Load calendar only once
+    if (!window.calendarLoaded) {
+      GitHubCalendar("#github-calendar", "palitsaikat001", {
+        responsive: true,
+        tooltips: false
+      });
+      window.calendarLoaded = true;
+
+      // REMOVE text like "xxx contributions in last year"
+      setTimeout(() => {
+        document.querySelectorAll(
+          "#github-calendar text, #github-calendar .contrib-footer"
+        ).forEach(el => el.remove());
+      }, 500);
+    }
+  }
+
+  function closeGithub() {
+    document.getElementById("githubOverlay").style.display = "none";
+  }
