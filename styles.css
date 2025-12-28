@@ -2052,6 +2052,9 @@ width: 100%;
   justify-content: center;
 }
 
+    .mobile-icon{
+      display: none;
+    }
 /* Remove contribution stats (numbers & text) */
 #github-calendar .contrib-column,
 #github-calendar .contrib-footer,
@@ -3853,6 +3856,10 @@ padding: 0 2.5rem;
   .navbar a {
     margin: 0 1rem; 
   } */
+
+  .mobile-icon {
+    display:flex;
+  }
 
 .portfolio-box.active .expanded-details img {
   width: 45%;
