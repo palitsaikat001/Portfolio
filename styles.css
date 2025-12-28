@@ -3886,7 +3886,7 @@ padding: 0 2.5rem;
 
   
   .mobile-icon {
-    display:flex;
+    display:flex !important;
   }
 
 .portfolio-box.active .expanded-details img {
