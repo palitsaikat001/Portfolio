@@ -2053,7 +2053,7 @@ width: 100%;
 }
 
     .mobile-icon{
-      display: none;
+      display: none !important;
     }
 /* Remove contribution stats (numbers & text) */
 #github-calendar .contrib-column,
@@ -2071,6 +2071,32 @@ width: 100%;
 #github-calender a {
   color: #00ff00;
 }
+
+
+/* Swipe hint text */
+.swipe-hint {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: #8b949e;
+  font-size: 10px;
+  margin-bottom: 12px;
+  user-select: none;
+}
+
+/* Animated arrow */
+.swipe-hint .arrow {
+  display: inline-block;
+  animation: swipeRight 1.2s infinite ease-in-out;
+}
+
+@keyframes swipeRight {
+  0%   { transform: translateX(0); opacity: 0.4; }
+  50%  { transform: translateX(6px); opacity: 1; }
+  100% { transform: translateX(0); opacity: 0.4; }
+}
+
 
 
 /* .portfolio-container {
@@ -3857,6 +3883,8 @@ padding: 0 2.5rem;
     margin: 0 1rem; 
   } */
 
+
+  
   .mobile-icon {
     display:flex;
   }
