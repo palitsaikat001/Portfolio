@@ -2276,6 +2276,13 @@ body.project-open .menu-btn.active:hover {
   display: none;
 }
 
+#home .check-desktop1 {
+  display: inline;
+}
+#home .check-mobile1 {
+  display: none;
+}
+
 #portfolio .rotate {
    display: inline-block;  /* makes transform apply */
   transform: rotate(90deg); /* override when both classes are present */
@@ -3884,6 +3891,12 @@ padding: 0 2.5rem;
   } */
 
 
+  #home .check-desktop1 {
+  display: none;
+}
+#home .check-mobile1 {
+  display: block;
+}
   
   .mobile-icon {
     display:flex !important;
