@@ -142,7 +142,7 @@ section {
 /* ===== Advanced Home Header (Name + Buttons + DateTime) ===== */
 .home-header1.advanced {
   width: 100%;
-  padding: 1rem 2rem 1rem 2.5rem;
+  padding: 1rem 2rem 1rem 2rem;
   background: rgba(255, 255, 255, 0.05);
   border-bottom: 1px solid var(--main-color);
   /* border-radius: 0 0 1.5rem 1.5rem;  <-- remove this line */
